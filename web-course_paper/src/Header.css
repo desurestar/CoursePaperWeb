@@ -1,0 +1,18 @@
+body {
+	color: black;
+}
+
+.header {
+	width: 100vw;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header-navigation {
+}
+
+.header-list_elem {
+	display: inline;
+	list-style: none;
+}

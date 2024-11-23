@@ -1,0 +1,43 @@
+.container {
+	/* position: fixed;
+	top: 0;
+	margin-top: 65px; */
+	display: flex;
+	height: 80px;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+}
+
+.nav_menu {
+	display: flex;
+	width: 60vw;
+}
+
+.user {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 10vw;
+}
+
+.nav_menu_item {
+	font-weight: bold;
+	color: #333;
+	margin-left: auto;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+.nav_menu_item:hover {
+	color: var(--main-color);
+}
+.login,
+.shopping_cart {
+	padding: 8px;
+	border-radius: 20px;
+	transition: background 0.2s ease;
+}
+.login:hover,
+.shopping_cart:hover {
+	background: var(--main-color);
+}

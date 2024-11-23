@@ -4,8 +4,10 @@ import { Header } from './components/Header'
 
 function App() {
 	return (
-		<div>
+		<div className='page'>
 			<Header />
+			<div>blok</div>
+			<div>blok</div>
 		</div>
 	)
 }

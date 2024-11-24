@@ -1,0 +1,46 @@
+.slider {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 100vw;
+	height: 400px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+}
+
+.button {
+	background: white;
+	border-radius: 30px;
+	border: none;
+	font-size: 2rem;
+	padding: 5px;
+	cursor: pointer;
+	z-index: 2;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.button.left {
+	left: 10px;
+}
+.button.right {
+	right: 10px;
+}
+
+.slide_container {
+	display: flex;
+	/* width: 100%;
+	height: 100%;
+	overflow: hidden; */
+	border-radius: 40px; /* Закругляем углы контейнера */
+	transition: transform 0.5s ease-in-out;
+}
+
+.image {
+	flex-shrink: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}

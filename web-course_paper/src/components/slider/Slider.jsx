@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
-import './Slider.css'
+import styles from './Slider.module.css'
 
 export function Slider({ images }) {
 	const [currentIndex, setCurrentIndex] = useState(0)
@@ -15,26 +15,30 @@ export function Slider({ images }) {
 	}
 
 	return (
-		<div className='slider'>
+		<div className={styles.slider}>
 			<div className='buttons'>
-				<FiChevronLeft onClick={prevSlide} className='button left' size={35} />
+				<FiChevronLeft
+					onClick={prevSlide}
+					className={`${styles.button} ${styles.left}`}
+					size={35}
+				/>
 				<FiChevronRight
 					onClick={nextSlide}
-					className='button right'
+					className={`${styles.button} ${styles.right}`}
 					size={35}
 				/>
 			</div>
 
 			<div
-				className='slide_container'
+				className={styles.slide_container}
 				style={{
-					transform: `translateX(-${currentIndex * 100}%)`, // Смещение влево на 100% за каждый слайд
+					transform: `translateX(-${currentIndex * 100}%)`,
 				}}
 			>
 				{images.map((image, index) => (
 					<img
 						key={index}
-						className='image'
+						className={styles.image}
 						src={image}
 						alt={`Slide ${index}`}
 					/>

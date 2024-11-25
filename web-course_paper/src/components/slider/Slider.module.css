@@ -34,7 +34,7 @@
 	/* width: 100%;
 	height: 100%;
 	overflow: hidden; */
-	border-radius: 40px; /* Закругляем углы контейнера */
+	border-radius: 40px;
 	transition: transform 0.5s ease-in-out;
 }
 

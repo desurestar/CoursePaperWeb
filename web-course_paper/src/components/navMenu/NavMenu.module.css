@@ -39,5 +39,6 @@
 }
 .login:hover,
 .shopping_cart:hover {
+	color: white;
 	background: var(--main-color);
 }

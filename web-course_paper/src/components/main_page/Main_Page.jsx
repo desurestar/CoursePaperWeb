@@ -1,4 +1,5 @@
 import { Dish } from '../dishCard/Dish'
+import { Footer } from '../footer/footer'
 import { Header } from '../header/Header'
 import { images } from '../images'
 import { NavMenu } from '../navMenu/NavMenu'
@@ -13,14 +14,17 @@ export function Main_Page() {
 				<NavMenu />
 			</div>
 			<Slider images={images} />
-
 			<div className={styles.popular}>Популярное</div>
-
 			<div className={styles.content}>
-				<Dish />
+				<Dish className={styles.elem} />
+				<Dish className={styles.elem} />
+				<Dish className={styles.elem} />
+				<Dish className={styles.elem} />
+				<Dish className={styles.elem} />
+				<Dish className={styles.elem} />
+				<Dish className={styles.elem} />
 			</div>
-
-			<div>blok</div>
+			<Footer />
 		</div>
 	)
 }

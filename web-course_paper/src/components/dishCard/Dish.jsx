@@ -1,4 +1,6 @@
+import { GoPlusCircle } from 'react-icons/go'
 import image from '../../assets/dish.jpg'
+import '../variables.css'
 import styles from './Dish.module.css'
 
 export function Dish() {
@@ -17,7 +19,9 @@ export function Dish() {
 			</div>
 			<div className={styles.foot}>
 				<div className={styles.prise}>от 900</div>
-				<div className={styles.dding}>добавить</div>
+				<div className={styles.adding}>
+					<GoPlusCircle size={35} />
+				</div>
 			</div>
 		</div>
 	)

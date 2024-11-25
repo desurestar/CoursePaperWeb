@@ -4,3 +4,10 @@
 	font-size: 30px;
 	font-weight: bold;
 }
+
+.content {
+	display: flex;
+	justify-content: space-between;
+	gap: 18px;
+	flex-wrap: wrap;
+}

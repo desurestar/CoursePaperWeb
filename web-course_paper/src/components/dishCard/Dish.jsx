@@ -3,9 +3,9 @@ import image from '../../assets/dish.jpg'
 import '../variables.css'
 import styles from './Dish.module.css'
 
-export function Dish() {
+export function Dish({ onClick }) {
 	return (
-		<div className={styles.container}>
+		<div onClick={onClick} className={styles.container}>
 			<div className={styles.image}>
 				<img className={styles.image_ex} src={image} alt={`Image for dish`} />
 			</div>

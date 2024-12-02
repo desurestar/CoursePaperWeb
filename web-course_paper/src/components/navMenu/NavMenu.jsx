@@ -1,7 +1,11 @@
+import { useState } from 'react'
 import { CiShoppingBasket, CiUser } from 'react-icons/ci'
+import { LoginModal } from '../molal/login/LoginModal'
 import styles from './NavMenu.module.css'
 
 export function NavMenu() {
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	let totalPrice = 10
 	return (
 		<div className={styles.container}>
 			<div className={styles.list_menu}>
@@ -33,8 +37,23 @@ export function NavMenu() {
 				</div>
 			</div>
 			<div className={styles.user}>
-				<CiUser size={45} className={styles.login} />
-				<CiShoppingBasket size={45} className={styles.shopping_cart} />
+				<CiUser
+					onClick={() => setIsModalOpen(true)}
+					size={45}
+					className={styles.login}
+				/>
+				<LoginModal
+					isOpen={isModalOpen}
+					onClose={() => setIsModalOpen(false)}
+				/>
+				<div className={styles.shopping_basket}>
+					<CiShoppingBasket size={45} className={styles.shopping_cart} />
+					{totalPrice > 0 ? (
+						<p className={styles.prise}>{totalPrice}</p>
+					) : (
+						<></>
+					)}
+				</div>
 			</div>
 		</div>
 	)

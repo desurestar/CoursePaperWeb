@@ -16,9 +16,9 @@
 
 .user {
 	display: flex;
-	justify-content: space-around;
+	justify-content: flex-end;
 	align-items: center;
-	width: 10vw;
+	width: 15vw;
 }
 
 .nav_menu_item {
@@ -31,6 +31,23 @@
 .nav_menu_item:hover {
 	color: var(--main-color);
 }
+
+.shopping_basket {
+	display: flex;
+	align-items: center;
+	background-color: var(--main-color-light);
+	border-radius: 30px;
+	margin-left: 24px;
+}
+
+.prise {
+	color: white;
+	background: var(--main-color);
+	border-radius: 20px;
+	margin: 0px 10px;
+	padding: 2px 8px;
+}
+
 .login,
 .shopping_cart {
 	padding: 8px;

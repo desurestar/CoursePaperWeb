@@ -1,7 +1,7 @@
 import './App.css'
 import './components/header/Header'
 
-import { Main_Page } from './components/main_page/main_page'
+import { Main_Page } from './components/pages/main/Main_Page'
 
 function App() {
 	return <Main_Page />

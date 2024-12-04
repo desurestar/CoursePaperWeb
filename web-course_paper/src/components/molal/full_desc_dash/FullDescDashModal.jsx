@@ -1,9 +1,8 @@
 import { CiShoppingBasket } from 'react-icons/ci'
 import Modal from 'react-modal'
-import image_dash from '../../../assets/dish.jpg'
 import styles from './FullDescDashModal.module.css'
 
-export function FullDescDashModal({ isOpen, onClose, children }) {
+export function FullDescDashModal({ isOpen, onClose, product }) {
 	return (
 		<Modal
 			ariaHideApp={false}
@@ -27,26 +26,29 @@ export function FullDescDashModal({ isOpen, onClose, children }) {
 			</div>
 			<div className={styles.content}>
 				<div className={styles.image_container}>
-					<img className={styles.image} src={image_dash} alt='image dash' />
+					<img className={styles.image} src={product.image} alt='image dash' />
 				</div>
 				<div className={styles.description}>
-					<h2 className={styles.title}>Dash</h2>
-					<p className={styles.ingredients}>
-						Баранина, лук репчатый, масло растительное, соль, лаваш, зерна
-						граната, специи, укроп, петрушка
-					</p>
+					<h2 className={styles.title}>{product.title}</h2>
+					<p className={styles.ingredients}>{product.decs}</p>
 					<div className={styles.nutritional_value}>
 						<div className={styles.nutritional_value_elem}>
-							Калорийность — 318,8 ккал/100 г
+							Калорийность — {product.calories} ккал/100 г
 						</div>
-						<div className={styles.nutritional_value_elem}>Белки — 29,2</div>
-						<div className={styles.nutritional_value_elem}>Жиры — 18,7</div>
-						<div className={styles.nutritional_value_elem}>Углеводы — 8,4</div>
+						<div className={styles.nutritional_value_elem}>
+							Белки — {product.proteins}
+						</div>
+						<div className={styles.nutritional_value_elem}>
+							Жиры — {product.fats}
+						</div>
+						<div className={styles.nutritional_value_elem}>
+							Углеводы — {product.carbohydrates}
+						</div>
 					</div>
 					<div className={styles.tableau}>
 						<div className={styles.prise_and_wight}>
-							<div className={styles.price}>900 P</div>
-							<div className={styles.wight}>600 г</div>
+							<div className={styles.price}>{product.prise} P</div>
+							<div className={styles.wight}>{product.size} г</div>
 						</div>
 						<div className={styles.adding}>
 							<CiShoppingBasket className={styles.basket} size={40} />

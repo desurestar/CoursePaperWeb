@@ -8,11 +8,13 @@ import styles from './Dish.module.css'
 export function Dish({ product }) {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const { addToBasket } = useBasket()
-	const handleAddToBasket = e => {
+
+	const handlerAddToBasket = e => {
 		e.stopPropagation()
 		addToBasket(product)
 		console.log(addToBasket)
 	}
+
 	return (
 		<div onClick={() => setIsModalOpen(true)} className={styles.container}>
 			<div className={styles.image}>
@@ -29,12 +31,7 @@ export function Dish({ product }) {
 			</div>
 			<div className={styles.foot}>
 				<div className={styles.prise}>от {product.prise}</div>
-				<div
-					onClick={e => {
-						handleAddToBasket(e)
-					}}
-					className={styles.adding}
-				>
+				<div onClick={e => handlerAddToBasket(e)} className={styles.adding}>
 					<GoPlusCircle size={35} />
 				</div>
 			</div>

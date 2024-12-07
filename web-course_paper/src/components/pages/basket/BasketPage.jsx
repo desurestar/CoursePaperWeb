@@ -1,19 +1,23 @@
 import { CiTrash } from 'react-icons/ci'
 import { FiMinus, FiPlus } from 'react-icons/fi'
+import { HiOutlineArrowLeft } from 'react-icons/hi'
 import { useBasket } from '../../../context/BasketContext'
 import { Header } from '../../header/Header'
 import styles from './BasketPage.module.css'
 
 export function BasketPage() {
-	// const totalPrice = 0
 	const { basketItems } = useBasket()
 	return (
 		<div className={styles.basket}>
+			<Header />
 			<div className={styles.container}>
+				<button className={styles.exit}>
+					<HiOutlineArrowLeft className={styles.left} />
+				</button>
+				<h2 className={styles.name}>Корзина</h2>
 				<div className={styles.products_list}>
 					{basketItems.length === 0 ? (
 						<div className={styles.empty}>
-							<Header />
 							<div className={styles.empty_message}>Здесь пусто</div>
 						</div>
 					) : (
@@ -35,14 +39,14 @@ export function BasketPage() {
 											<FiPlus size={40} className={styles.plus_button} />
 										</div>
 									</div>
-
 									<div className={styles.delete}>
 										<CiTrash size={20} className={styles.delete_button} />
-										<div className={styles.prise}>9000 ₽</div>
+										<div className={styles.prise}>{product.prise}₽</div>
 									</div>
 								</div>
 							</div>
 						))
+						// <div>{console.log(basketItems[0])}</div>
 					)}
 				</div>
 			</div>

@@ -7,16 +7,12 @@ import styles from './NavMenu.module.css'
 
 export function NavMenu() {
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	const [isBasketModalOpen, setIsBasketModalOpen] = useState(false)
 	const { basketItems } = useBasket()
-
-	const totalPrice =
+	const totalPrise = 0
+	const getTotalPrise =
 		basketItems.length === 0
 			? 0
-			: basketItems.reduce((total, item) => {
-					return total + item.prise
-			  })
-	// const totalPrice = 0
+			: basketItems.reduce((total, item) => total + item.prise, totalPrise)
 	return (
 		<div className={styles.container}>
 			<div className={styles.list_menu}>
@@ -60,8 +56,8 @@ export function NavMenu() {
 
 				<Link to={'/basket'} className={styles.shopping_basket}>
 					<CiShoppingBasket size={45} className={styles.shopping_cart} />
-					{totalPrice > 0 ? (
-						<p className={styles.prise}>{totalPrice}</p>
+					{getTotalPrise > 0 ? (
+						<p className={styles.prise}>{getTotalPrise}</p>
 					) : (
 						<></>
 					)}

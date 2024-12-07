@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BasketProvider } from '../../../context/BasketContext'
+import { useBasket } from '../../../context/BasketContext'
 import { Dish } from '../../dishCard/Dish'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
@@ -12,35 +12,34 @@ import styles from './Main_Page.module.css'
 
 export function Main_Page() {
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	return (
-		<BasketProvider>
-			<div className={styles.page}>
-				<div>
-					<Header />
-					<NavMenu />
-				</div>
-				<Slider images={images} />
-				<div onClick={() => setIsModalOpen(true)} className={styles.popular}>
-					Популярное
-				</div>
-				<BasketModal
-					isOpen={isModalOpen}
-					onClose={() => setIsModalOpen(false)}
-					products={products}
-				/>
-				<div className={styles.content}>
-					{products.map(product => (
-						<Dish
-							key={product.id}
-							product={product}
-							onClick={() => setIsModalOpen(true)}
-							className={styles.elem}
-						/>
-					))}
-				</div>
+	const { addToBasket } = useBasket()
 
-				<Footer />
+	const handlerAddToBasket = product => {
+		addToBasket(product)
+		console.log(addToBasket.length)
+	}
+	return (
+		<div className={styles.page}>
+			<div>
+				<Header />
+				<NavMenu />
 			</div>
-		</BasketProvider>
+			<Slider images={images} />
+			<div onClick={() => setIsModalOpen(true)} className={styles.popular}>
+				Популярное
+			</div>
+			<BasketModal
+				isOpen={isModalOpen}
+				onClose={() => setIsModalOpen(false)}
+				products={products}
+			/>
+			<div className={styles.content}>
+				{products.map(product => (
+					<Dish key={product.id} product={product} className={styles.elem} />
+				))}
+			</div>
+
+			<Footer />
+		</div>
 	)
 }

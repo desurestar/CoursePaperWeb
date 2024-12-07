@@ -1,48 +1,46 @@
 import { useState } from 'react'
+import { BasketProvider } from '../../../context/BasketContext'
 import { Dish } from '../../dishCard/Dish'
-import { Footer } from '../../footer/footer'
+import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
 import { images } from '../../images'
-import { FullDescDashModal } from '../../molal/full_desc_dash/FullDescDashModal'
+import { BasketModal } from '../../molal/basket_modal/BasketModal'
 import { NavMenu } from '../../navMenu/NavMenu'
 import { products } from '../../product'
 import { Slider } from '../../slider/Slider'
 import styles from './Main_Page.module.css'
 
-function addToBasket(event) {
-	event.stopPropagation()
-}
-
 export function Main_Page() {
 	const [isModalOpen, setIsModalOpen] = useState(false)
-
 	return (
-		<div className={styles.page}>
-			<div className={styles.static_comp}>
-				<Header />
-				<NavMenu />
-			</div>
-			<Slider images={images} />
-			<div className={styles.popular}>Популярное</div>
-			<div className={styles.content}>
-				{products.map(product => (
-					<>
+		<BasketProvider>
+			<div className={styles.page}>
+				<div>
+					<Header />
+					<NavMenu />
+				</div>
+				<Slider images={images} />
+				<div onClick={() => setIsModalOpen(true)} className={styles.popular}>
+					Популярное
+				</div>
+				<BasketModal
+					isOpen={isModalOpen}
+					onClose={() => setIsModalOpen(false)}
+					products={products}
+				/>
+				<div className={styles.content}>
+					{products.map(product => (
 						<Dish
+							key={product.id}
 							product={product}
-							addToBasket={e => addToBasket(e)}
 							onClick={() => setIsModalOpen(true)}
 							className={styles.elem}
 						/>
-						<FullDescDashModal
-							product={product}
-							isOpen={isModalOpen}
-							onClose={() => setIsModalOpen(false)}
-						/>
-					</>
-				))}
-			</div>
+					))}
+				</div>
 
-			<Footer />
-		</div>
+				<Footer />
+			</div>
+		</BasketProvider>
 	)
 }

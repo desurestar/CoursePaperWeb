@@ -2,9 +2,10 @@ import Modal from 'react-modal'
 import '../../variables.css'
 import styles from './LoginModal.module.css'
 
-export function LoginModal({ isOpen, onClose, children }) {
+export function LoginModal({ isOpen, onClose }) {
 	return (
 		<Modal
+			ariaHideApp={false}
 			closeTimeoutMS={200}
 			overlayClassName={{
 				base: styles.overlay,

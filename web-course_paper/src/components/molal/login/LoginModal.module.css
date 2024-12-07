@@ -106,3 +106,7 @@
 .close_button:hover {
 	color: var(--main-color);
 }
+
+.modal:focus {
+	outline: none;
+}

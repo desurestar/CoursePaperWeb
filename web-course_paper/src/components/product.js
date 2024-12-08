@@ -10,6 +10,7 @@ export const products = [
 		fats: '18,7',
 		carbohydrates: '8,4',
 		prise: 900,
+		count: 1,
 	},
 	{
 		id: 2,
@@ -22,6 +23,7 @@ export const products = [
 		fats: '18,7',
 		carbohydrates: '8,4',
 		prise: 900,
+		count: 1,
 	},
 	{
 		id: 3,
@@ -34,6 +36,7 @@ export const products = [
 		fats: '18,7',
 		carbohydrates: '8,4',
 		prise: 900,
+		count: 1,
 	},
 	{
 		id: 4,
@@ -46,6 +49,7 @@ export const products = [
 		fats: '18,7',
 		carbohydrates: '8,4',
 		prise: 900,
+		count: 1,
 	},
 	{
 		id: 5,
@@ -58,6 +62,7 @@ export const products = [
 		fats: '18,7',
 		carbohydrates: '8,4',
 		prise: 900,
+		count: 1,
 	},
 	{
 		id: 6,
@@ -70,6 +75,7 @@ export const products = [
 		fats: '18,7',
 		carbohydrates: '8,4',
 		prise: 900,
+		count: 1,
 	},
 	{
 		id: 7,
@@ -82,5 +88,6 @@ export const products = [
 		fats: '18,7',
 		carbohydrates: '8,4',
 		prise: 900,
+		count: 1,
 	},
 ]

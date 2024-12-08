@@ -12,7 +12,6 @@ export function Dish({ product }) {
 	const handlerAddToBasket = e => {
 		e.stopPropagation()
 		addToBasket(product)
-		console.log(addToBasket)
 	}
 
 	return (

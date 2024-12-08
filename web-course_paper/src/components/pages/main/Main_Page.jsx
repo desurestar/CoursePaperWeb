@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useBasket } from '../../../context/BasketContext'
 import { Dish } from '../../dishCard/Dish'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
@@ -12,12 +11,6 @@ import styles from './Main_Page.module.css'
 
 export function Main_Page() {
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	const { addToBasket } = useBasket()
-
-	const handlerAddToBasket = product => {
-		addToBasket(product)
-		console.log(addToBasket.length)
-	}
 	return (
 		<div className={styles.page}>
 			<div>

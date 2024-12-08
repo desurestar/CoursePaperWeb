@@ -1,7 +1,7 @@
-import { CiTrash } from 'react-icons/ci'
-import { FiMinus, FiPlus } from 'react-icons/fi'
 import { HiOutlineArrowLeft } from 'react-icons/hi'
+import { Link } from 'react-router-dom'
 import { useBasket } from '../../../context/BasketContext'
+import { DishCardToBasket } from '../../dishCard/dish_card_to_basket/DishCardtoBasket'
 import { Header } from '../../header/Header'
 import styles from './BasketPage.module.css'
 
@@ -12,7 +12,9 @@ export function BasketPage() {
 			<Header />
 			<div className={styles.container}>
 				<button className={styles.exit}>
-					<HiOutlineArrowLeft className={styles.left} />
+					<Link className={styles.left} to='/'>
+						<HiOutlineArrowLeft className={styles.left} />
+					</Link>
 				</button>
 				<h2 className={styles.name}>Корзина</h2>
 				<div className={styles.products_list}>
@@ -22,29 +24,11 @@ export function BasketPage() {
 						</div>
 					) : (
 						basketItems.map(product => (
-							<div key={product.id} className={styles.item}>
-								<div className={styles.image_container}>
-									<img
-										className={styles.image}
-										src={product.image}
-										alt={`Image dish with id: ${product.id}`}
-									/>
-								</div>
-								<div className={styles.content}>
-									<div className={styles.main_content}>
-										<h3 className={styles.title}>{product.title}</h3>
-										<div className={styles.count}>
-											<FiMinus size={40} className={styles.minus_button} />
-											<div className={styles.quantity}>1</div>
-											<FiPlus size={40} className={styles.plus_button} />
-										</div>
-									</div>
-									<div className={styles.delete}>
-										<CiTrash size={20} className={styles.delete_button} />
-										<div className={styles.prise}>{product.prise}₽</div>
-									</div>
-								</div>
-							</div>
+							<DishCardToBasket
+								key={product.id}
+								className={styles.item}
+								product={product}
+							/>
 						))
 						// <div>{console.log(basketItems[0])}</div>
 					)}

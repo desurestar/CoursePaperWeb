@@ -1,11 +1,11 @@
 .header {
 	display: flex;
 	height: 65px;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
 	padding: 10px 20px;
 	background-color: #fff;
-	border-radius: 30px;
+	border-radius: 20px;
 	border-bottom: 1px solid #ccc;
 }
 

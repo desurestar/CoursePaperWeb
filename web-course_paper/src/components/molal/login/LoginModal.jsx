@@ -19,7 +19,6 @@ export function LoginModal({ isOpen, onClose }) {
 			}}
 			isOpen={isOpen}
 			onRequestClose={onClose}
-			contentLabel='example modal window'
 		>
 			<button onClick={onClose} className={styles.close_button}>
 				Закрыть

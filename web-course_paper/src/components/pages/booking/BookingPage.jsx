@@ -32,7 +32,7 @@ export function BookingPage() {
 				<h2 className={styles.title}>Многофункциональные залы</h2>
 				<div className={styles.content}>
 					<Slider className={styles.slider} images={multifunction_images} />
-					<Link className={styles.more}>Поjjдробнее</Link>
+					<Link className={styles.more}>Подробнее</Link>
 				</div>
 				<Footer />
 			</div>

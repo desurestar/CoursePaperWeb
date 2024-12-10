@@ -9,9 +9,9 @@ export function Header() {
 			<Logo />
 			<nav className={styles.nav}>
 				<Link to={'/'}>Доставка</Link>
-				<Link to={'booking'}>Бронирование</Link>
-				<a href='#delivery'>Политика конфиденциальности</a>
-				<a href='#delivery'>Программа лояльности</a>
+				<Link to={'/booking'}>Банкетные залы</Link>
+				<Link to={'/events'}>Мероприятия</Link>
+				<Link to={'/contacts'}>Программа лояльности</Link>
 			</nav>
 			<div className={styles.actions}>
 				<a href='tel:+7XXXXXXXXXX' className={styles.phone}>

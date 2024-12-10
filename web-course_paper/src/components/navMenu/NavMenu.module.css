@@ -3,7 +3,7 @@
 	height: 80px;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 20px;
+	padding: 0px 20px;
 }
 
 .nav_menu {
@@ -27,6 +27,14 @@
 }
 .nav_menu_item:hover {
 	color: var(--main-color);
+}
+
+.nav_menu_item_active {
+	font-weight: bold;
+	color: var(--main-color);
+	margin-left: auto;
+	text-decoration: none;
+	transition: color 0.2s ease;
 }
 
 .shopping_basket {

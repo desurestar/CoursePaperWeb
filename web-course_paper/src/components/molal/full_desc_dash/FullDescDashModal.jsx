@@ -26,6 +26,7 @@ export function FullDescDashModal({ isOpen, onClose, product }) {
 				<VscChromeClose size={40} onClick={onClose} className={styles.close} />
 			</div>
 			<div className={styles.content}>
+				z
 				<div className={styles.image_container}>
 					<img className={styles.image} src={product.image} alt='image dash' />
 				</div>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CiShoppingBasket, CiUser } from 'react-icons/ci'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useBasket } from '../../context/BasketContext'
 import { LoginModal } from '../molal/login/LoginModal'
 import styles from './NavMenu.module.css'
@@ -15,33 +15,71 @@ export function NavMenu() {
 			: basketItems.reduce((total, item) => total + item.prise, totalPrise)
 	return (
 		<div className={styles.container}>
-			<div className={styles.list_menu}>
-				<div className={styles.nav_menu}>
-					<a href='#' className={styles.nav_menu_item}>
-						Салаты
-					</a>
-					<a href='#' className={styles.nav_menu_item}>
-						Закуски
-					</a>
-					<a href='#' className={styles.nav_menu_item}>
-						Супы
-					</a>
-					<a href='#' className={styles.nav_menu_item}>
-						Мясо на гриле
-					</a>
-					<a href='#' className={styles.nav_menu_item}>
-						Рыба на гриле
-					</a>
-					<a href='#' className={styles.nav_menu_item}>
-						Выпечка
-					</a>
-					<a href='#' className={styles.nav_menu_item}>
-						Десерты
-					</a>
-					<a href='#' className={styles.nav_menu_item}>
-						Напитки
-					</a>
-				</div>
+			<div className={styles.nav_menu}>
+				<NavLink
+					to={'/salads'}
+					className={({ isActive }) =>
+						isActive ? styles.nav_menu_item_active : styles.nav_menu_item
+					}
+				>
+					Салаты
+				</NavLink>
+				<NavLink
+					to={'/snacks'}
+					className={({ isActive }) =>
+						isActive ? styles.nav_menu_item_active : styles.nav_menu_item
+					}
+				>
+					Закуски
+				</NavLink>
+				<NavLink
+					to={'/soups'}
+					className={({ isActive }) =>
+						isActive ? styles.nav_menu_item_active : styles.nav_menu_item
+					}
+				>
+					Супы
+				</NavLink>
+				<NavLink
+					to={'/grilled-meat'}
+					className={({ isActive }) =>
+						isActive ? styles.nav_menu_item_active : styles.nav_menu_item
+					}
+				>
+					Мясо на гриле
+				</NavLink>
+				<NavLink
+					to={'/grilled-fish'}
+					className={({ isActive }) =>
+						isActive ? styles.nav_menu_item_active : styles.nav_menu_item
+					}
+				>
+					Рыба на гриле
+				</NavLink>
+				<NavLink
+					to={'/bakery'}
+					className={({ isActive }) =>
+						isActive ? styles.nav_menu_item_active : styles.nav_menu_item
+					}
+				>
+					Выпечка
+				</NavLink>
+				<NavLink
+					to={'/desserts'}
+					className={({ isActive }) =>
+						isActive ? styles.nav_menu_item_active : styles.nav_menu_item
+					}
+				>
+					Десерты
+				</NavLink>
+				<NavLink
+					to={'/drinks'}
+					className={({ isActive }) =>
+						isActive ? styles.nav_menu_item_active : styles.nav_menu_item
+					}
+				>
+					Напитки
+				</NavLink>
 			</div>
 			<div className={styles.user}>
 				<CiUser

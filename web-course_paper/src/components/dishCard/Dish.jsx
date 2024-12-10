@@ -29,7 +29,7 @@ export function Dish({ product }) {
 				<div className={styles.desc}>{product.desc}</div>
 			</div>
 			<div className={styles.foot}>
-				<div className={styles.prise}>от {product.prise}</div>
+				<div className={styles.prise}>{product.prise}</div>
 				<div onClick={e => handlerAddToBasket(e)} className={styles.adding}>
 					<GoPlusCircle size={35} />
 				</div>

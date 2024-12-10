@@ -64,10 +64,11 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
 	width: 100%;
 	margin: 16px;
-	padding-left: 12px;
-	padding-right: 12px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .prise {

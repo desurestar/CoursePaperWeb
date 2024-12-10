@@ -1,7 +1,7 @@
 .header {
 	display: flex;
 	height: 65px;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 	padding: 10px 20px;
 	background-color: #fff;
@@ -17,20 +17,36 @@
 	border-right: 1px black solid;
 }
 
-.nav a {
-	margin: 0 15px;
+.link {
+	margin: 0 25px;
 	text-decoration: none;
 	color: #333;
 	transition: color 0.2s ease;
 }
 
-.nav a:hover {
+.link:hover {
 	color: var(--main-color);
 }
 
 .actions .phone,
 .actions .cart {
-	margin-left: 20px;
+	margin: 0px 20px;
 	color: #007bff;
 	text-decoration: none;
+}
+
+.actions {
+	display: flex;
+	align-items: center;
+}
+
+.phone {
+	font-size: 18px;
+}
+
+.timer {
+	color: rgb(0, 177, 183);
+
+	font-size: 24px;
+	font-weight: bold;
 }

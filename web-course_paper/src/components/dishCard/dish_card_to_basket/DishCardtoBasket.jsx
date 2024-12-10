@@ -6,9 +6,10 @@ import styles from './DishCardToBasket.module.css'
 
 export function DishCardToBasket({ className, product }) {
 	const [count, setCount] = useState(product.count)
-	const { basketItems } = useBasket()
-	function deleteProduct() {}
-
+	const { removeToBasket } = useBasket()
+	function deleteProduct() {
+		removeToBasket(product)
+	}
 	return (
 		<div className={className}>
 			<div key={product.id} className={styles.item}>
@@ -37,8 +38,11 @@ export function DishCardToBasket({ className, product }) {
 								className={styles.plus_button}
 							/>
 						</div>
-						<div className={styles.prise}>{product.prise * count} ₽</div>
-						<div className={styles.delete}>
+						<div className={styles.prise}>{product.prise * count}₽</div>
+						<div
+							onClick={() => removeToBasket(product)}
+							className={styles.delete}
+						>
 							<VscChromeClose size={32} className={styles.delete_button} />
 						</div>
 					</div>

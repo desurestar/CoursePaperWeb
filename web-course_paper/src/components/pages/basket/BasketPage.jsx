@@ -1,7 +1,7 @@
 import { HiOutlineArrowLeft } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
 import { useBasket } from '../../../context/BasketContext'
-import { DishCardToBasket } from '../../dishCard/dish_card_to_basket/DishCardtoBasket'
+import { DishCardToBasket } from '../../dishCard/dish_card_to_basket/DishCardToBasket'
 import { Header } from '../../header/Header'
 import styles from './BasketPage.module.css'
 

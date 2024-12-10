@@ -3,13 +3,19 @@ import { createContext, useContext, useState } from 'react'
 const BasketContext = createContext()
 
 export function BasketProvider({ children }) {
-	const [basketItems, setBasketItems] = useState([])
+	let [basketItems, setBasketItems] = useState([])
 	const addToBasket = product => {
 		setBasketItems(prevItems => [...prevItems, product])
 	}
 
+	const removeToBasket = product => {
+		setBasketItems(prevItems => prevItems.filter(item => item !== product))
+	}
+
 	return (
-		<BasketContext.Provider value={{ basketItems, addToBasket }}>
+		<BasketContext.Provider
+			value={{ basketItems, addToBasket, removeToBasket }}
+		>
 			{children}
 		</BasketContext.Provider>
 	)

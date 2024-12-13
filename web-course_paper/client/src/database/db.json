@@ -1,0 +1,95 @@
+{
+	"products": [
+		{
+			"id": 1,
+			"title": "Dish",
+			"image": "https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg",
+			"size": "900 г",
+			"desc": "Баранина, лук репчатый, масло растительное, соль, лаваш, зерна граната, специи, укроп, петрушка",
+			"calories": "318,8",
+			"proteins": "29,2",
+			"fats": "18,7",
+			"carbohydrates": "8,4",
+			"prise": 900,
+			"count": 1
+		},
+		{
+			"id": 2,
+			"title": "Dish",
+			"image": "https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg",
+			"size": "900 г",
+			"desc": "Баранина, лук репчатый, масло растительное, соль, лаваш, зерна граната, специи, укроп, петрушка",
+			"calories": "318,8",
+			"proteins": "29,2",
+			"fats": "18,7",
+			"carbohydrates": "8,4",
+			"prise": 900,
+			"count": 1
+		},
+		{
+			"id": 3,
+			"title": "Dish",
+			"image": "https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg",
+			"size": "900 г",
+			"desc": "Баранина, лук репчатый, масло растительное, соль, лаваш, зерна граната, специи, укроп, петрушка",
+			"calories": "318,8",
+			"proteins": "29,2",
+			"fats": "18,7",
+			"carbohydrates": "8,4",
+			"prise": 900,
+			"count": 1
+		},
+		{
+			"id": 4,
+			"title": "Dish",
+			"image": "https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg",
+			"size": "900 г",
+			"desc": "Баранина, лук репчатый, масло растительное, соль, лаваш, зерна граната, специи, укроп, петрушка",
+			"calories": "318,8",
+			"proteins": "29,2",
+			"fats": "18,7",
+			"carbohydrates": "8,4",
+			"prise": 900,
+			"count": 1
+		},
+		{
+			"id": 5,
+			"title": "Dish",
+			"image": "https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg",
+			"size": "900 г",
+			"desc": "Баранина, лук репчатый, масло растительное, соль, лаваш, зерна граната, специи, укроп, петрушка",
+			"calories": "318,8",
+			"proteins": "29,2",
+			"fats": "18,7",
+			"carbohydrates": "8,4",
+			"prise": 900,
+			"count": 1
+		},
+		{
+			"id": 6,
+			"title": "Dish",
+			"image": "https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg",
+			"size": "900 г",
+			"desc": "Баранина, лук репчатый, масло растительное, соль, лаваш, зерна граната, специи, укроп, петрушка",
+			"calories": "318,8",
+			"proteins": "29,2",
+			"fats": "18,7",
+			"carbohydrates": "8,4",
+			"prise": 900,
+			"count": 1
+		},
+		{
+			"id": 7,
+			"title": "Dish",
+			"image": "https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg",
+			"size": "900 г",
+			"desc": "Баранина, лук репчатый, масло растительное, соль, лаваш, зерна граната, специи, укроп, петрушка",
+			"calories": "318,8",
+			"proteins": "29,2",
+			"fats": "18,7",
+			"carbohydrates": "8,4",
+			"prise": 900,
+			"count": 1
+		}
+	]
+}

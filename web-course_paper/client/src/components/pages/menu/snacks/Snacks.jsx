@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { Dish } from '../../../dishCard/Dish'
 import { Footer } from '../../../footer/Footer'
 import { Header } from '../../../header/Header'

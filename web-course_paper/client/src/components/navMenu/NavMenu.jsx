@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { CiShoppingBasket, CiUser } from 'react-icons/ci'
 import { useSelector } from 'react-redux'
-import { Link, NavLink } from 'react-router-dom'
-import { LoginModal } from '../molal/login/LoginModal'
+import { Link, NavLink, Route, Routes } from 'react-router-dom'
+import { LoginModal } from '../molal/register/RegisterModal'
 import styles from './NavMenu.module.css'
 
 export function NavMenu() {
@@ -96,6 +96,19 @@ export function NavMenu() {
 						<></>
 					)}
 				</Link>
+			</div>
+			<div>
+				{/* /snacks
+/soups
+/grilled-meat
+/grilled-fish
+/bakery
+/desserts
+ */}
+				<Routes>
+					<Route path='/salads' element={<Salads />} />
+					<Route path='/drinks' element={<Drinks />} />
+				</Routes>
 			</div>
 		</div>
 	)

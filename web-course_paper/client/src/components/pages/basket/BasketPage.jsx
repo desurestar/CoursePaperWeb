@@ -9,12 +9,12 @@ import styles from './BasketPage.module.css'
 export function BasketPage() {
 	// const { basketItems } = useBasket()
 	// const temp = 0
-	// const totalPrise = basketItems.reduce(
-	// 	(total, item) => total + item.prise,
+	// const totalPrice = basketItems.reduce(
+	// 	(total, item) => total + item.price,
 	// 	temp
 	// )
 
-	const { items, totalPrise } = useSelector(state => state.basket)
+	const { items, totalPrice } = useSelector(state => state.basket)
 	const dispatch = useDispatch()
 
 	const handleRemoveFormBasket = id => {
@@ -50,7 +50,7 @@ export function BasketPage() {
 					<div className={styles.order}>
 						<div className={styles.blok}>
 							<h4 className={styles.total}>Итого:</h4>
-							<div className={styles.total_prise}>{totalPrise} ₽</div>
+							<div className={styles.total_prise}>{totalPrice} ₽</div>
 						</div>
 						<div className={styles.making}>
 							<button className={styles.button}>Оформить заказ</button>

@@ -9,7 +9,7 @@ export const products = [
 		proteins: '29,2',
 		fats: '18,7',
 		carbohydrates: '8,4',
-		prise: 900,
+		price: 900,
 		count: 1,
 	},
 	{
@@ -22,7 +22,7 @@ export const products = [
 		proteins: '29,2',
 		fats: '18,7',
 		carbohydrates: '8,4',
-		prise: 900,
+		price: 900,
 		count: 1,
 	},
 	{
@@ -35,7 +35,7 @@ export const products = [
 		proteins: '29,2',
 		fats: '18,7',
 		carbohydrates: '8,4',
-		prise: 900,
+		price: 900,
 		count: 1,
 	},
 	{
@@ -48,7 +48,7 @@ export const products = [
 		proteins: '29,2',
 		fats: '18,7',
 		carbohydrates: '8,4',
-		prise: 900,
+		price: 900,
 		count: 1,
 	},
 	{
@@ -61,7 +61,7 @@ export const products = [
 		proteins: '29,2',
 		fats: '18,7',
 		carbohydrates: '8,4',
-		prise: 900,
+		price: 900,
 		count: 1,
 	},
 	{
@@ -74,7 +74,7 @@ export const products = [
 		proteins: '29,2',
 		fats: '18,7',
 		carbohydrates: '8,4',
-		prise: 900,
+		price: 900,
 		count: 1,
 	},
 	{
@@ -87,7 +87,7 @@ export const products = [
 		proteins: '29,2',
 		fats: '18,7',
 		carbohydrates: '8,4',
-		prise: 900,
+		price: 900,
 		count: 1,
 	},
 ]

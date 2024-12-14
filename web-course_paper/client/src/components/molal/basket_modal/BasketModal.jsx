@@ -46,7 +46,7 @@ export function BasketModal({ className, isOpen, onClose, products }) {
 
 								<div className={styles.delete}>
 									<CiTrash size={20} className={styles.delete_button} />
-									<div className={styles.prise}>9000 ₽</div>
+									<div className={styles.price}>9000 ₽</div>
 								</div>
 							</div>
 						</div>

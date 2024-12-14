@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
 	items: [],
-	totalPrise: 0,
+	totalPrice: 0,
 }
 
 const basketSlice = createSlice({
@@ -15,11 +15,11 @@ const basketSlice = createSlice({
 
 			if (existingItems) {
 				existingItems.quantity++
-				existingItems.totalPrise += dish.prise
+				existingItems.totalPrice += dish.price
 			} else {
-				state.items.push({ ...dish, quantity: 1, totalPrise: dish.prise })
+				state.items.push({ ...dish, quantity: 1, totalPrice: dish.price })
 			}
-			state.totalPrise += dish.prise
+			state.totalPrice += dish.price
 		},
 		removeFromBasket(state, action) {
 			const id = action.payload
@@ -27,29 +27,29 @@ const basketSlice = createSlice({
 
 			if (itemIndex >= 0) {
 				const item = state.items[itemIndex]
-				state.totalPrise -= item.totalPrise
+				state.totalPrice -= item.totalPrice
 				state.items.splice(itemIndex, 1)
 			}
 		},
 		removeOneItem(state, action) {
 			const id = action.payload
-			const index = state.items.findIndex(item => item.id === id)
+			const index = state.items.find(item => item.id === id)
 
 			if (index !== -1) {
 				const existingItem = state.items[index]
 				if (existingItem.quantity > 1) {
 					existingItem.quantity -= 1
-					existingItem.totalPrise -= existingItem.prise
-					state.totalPrise -= existingItem.prise
+					existingItem.totalPrice -= existingItem.price
+					state.totalPrice -= existingItem.price
 				} else {
 					state.items = state.items.filter(item => item.id !== id)
-					state.totalPrise -= existingItem.prise
+					state.totalPrice -= existingItem.price
 				}
 			}
 		},
 		clearBasket(state) {
 			state.items = []
-			state.totalPrise = 0
+			state.totalPrice = 0
 		},
 	},
 })

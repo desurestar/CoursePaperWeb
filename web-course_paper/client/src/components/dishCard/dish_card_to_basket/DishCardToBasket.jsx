@@ -54,7 +54,7 @@ export function DishCardToBasket({ className, product }) {
 								className={styles.plus_button}
 							/>
 						</div>
-						<div className={styles.prise}>{product.totalPrise}₽</div>
+						<div className={styles.price}>{product.totalPrice}₽</div>
 						<div
 							onClick={() => handleRemoveFormBasket()}
 							className={styles.delete}

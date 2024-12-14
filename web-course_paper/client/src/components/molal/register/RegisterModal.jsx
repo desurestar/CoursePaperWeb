@@ -1,23 +1,50 @@
 import { useState } from 'react'
 import Modal from 'react-modal'
+import { useDispatch } from 'react-redux'
+import { login, register } from '../../../redux/slices/authSlice'
 import '../../variables.css'
 import styles from './RegisterModal.module.css'
 
 export function LoginModal({ isOpen, onClose }) {
+	const dispatch = useDispatch()
 	const [isRegister, setIsRegister] = useState(false)
-	const [form, setForm] = useState({ name: '', email: '', password: '' })
+	const [registerForm, setRegisterForm] = useState({
+		name: '',
+		email: '',
+		password: '',
+	})
+	const [loginForm, setLoginForm] = useState({
+		email: '',
+		password: '',
+	})
 
-	const handleChange = e => {
-		setForm({ ...form, [e.target.name]: e.target.name })
+	const handleChangeRegister = e => {
+		setRegisterForm({ ...registerForm, [e.target.name]: e.target.value })
 	}
 
-	const handleSubmit = async e => {
+	const handleChangeLogin = e => {
+		setLoginForm({ ...loginForm, [e.target.name]: e.target.value })
+	}
+
+	const handleSubmitRegister = async e => {
 		e.preventDefault()
 		try {
-			await axios.post('/api/register', form)
+			await dispatch(register(registerForm)).unwrap()
 			alert('Вы успешно зарегистрировались!')
+			setIsRegister(!isRegister)
 		} catch (error) {
 			alert('Ошибка при регистрации')
+		}
+	}
+
+	const handleSubmitLogin = async e => {
+		e.preventDefault()
+		try {
+			await dispatch(login(loginForm)).unwrap()
+			alert('Вход выполнен!')
+			onClose()
+		} catch (error) {
+			alert('Ошибка входа')
 		}
 	}
 
@@ -46,8 +73,9 @@ export function LoginModal({ isOpen, onClose }) {
 				<h2 className={styles.title}>{isRegister ? 'Регистрация' : 'Вход'}</h2>
 				{isRegister ? (
 					<form
-						action='register'
-						onSubmit={handleSubmit}
+						method='POST'
+						action='/register'
+						onSubmit={handleSubmitRegister}
 						className={styles.form}
 					>
 						<input
@@ -55,41 +83,46 @@ export function LoginModal({ isOpen, onClose }) {
 							name='name'
 							type='text'
 							placeholder='Имя'
-							onChange={handleChange}
+							onChange={handleChangeRegister}
 						/>
 						<input
 							className={styles.input}
 							name='email'
-							type='text'
+							type='email'
 							placeholder='Email'
-							onChange={handleChange}
+							onChange={handleChangeRegister}
 						/>
 						<input
 							className={styles.input}
-							name='name'
+							name='password'
 							type='password'
 							placeholder='Пароль'
-							onChange={handleChange}
+							onChange={handleChangeRegister}
 						/>
 						<button type='submit' className={styles.push_button}>
 							Создать аккаунт
 						</button>
 					</form>
 				) : (
-					<form action='login' onSubmit={handleSubmit} className={styles.form}>
+					<form
+						method='POST'
+						action='/login'
+						onSubmit={handleSubmitLogin}
+						className={styles.form}
+					>
 						<input
 							className={styles.input}
 							name='email'
-							type='text'
+							type='email'
 							placeholder='Email'
-							onChange={handleChange}
+							onChange={handleChangeLogin}
 						/>
 						<input
 							className={styles.input}
-							name='name'
+							name='password'
 							type='password'
 							placeholder='Пароль'
-							onChange={handleChange}
+							onChange={handleChangeLogin}
 						/>
 						<button type='submit' className={styles.push_button}>
 							Войти

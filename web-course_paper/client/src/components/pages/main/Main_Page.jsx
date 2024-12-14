@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { useDispatch } from 'react-redux'
+import { verifyToken } from '../../../redux/slices/authSlice'
 import { Dish } from '../../dishCard/Dish'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
@@ -12,6 +14,12 @@ import styles from './Main_Page.module.css'
 
 export function Main_Page() {
 	const [isModalOpen, setIsModalOpen] = useState(false)
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(verifyToken())
+	}, [dispatch])
+
 	return (
 		<div className={styles.page}>
 			<Helmet>

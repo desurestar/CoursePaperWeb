@@ -59,7 +59,7 @@ export function FullDescDashModal({ isOpen, onClose, product }) {
 						</div>
 						<div className={styles.tableau}>
 							<div className={styles.prise_and_wight}>
-								<div className={styles.price}>{product.prise} P</div>
+								<div className={styles.price}>{product.price} P</div>
 								<div className={styles.wight}>{product.size} г</div>
 							</div>
 							<div

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { verifyToken } from '../../../redux/slices/authSlice'
+import { AddDish } from '../../dishCard/addDish/AddDish'
 import { Dish } from '../../dishCard/Dish'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
@@ -14,6 +15,8 @@ import styles from './Main_Page.module.css'
 
 export function Main_Page() {
 	const [isModalOpen, setIsModalOpen] = useState(false)
+	const { isAuthenticated } = useSelector(state => state.auth)
+	const user = useSelector(state => state.auth.user)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -42,6 +45,11 @@ export function Main_Page() {
 				{products.map(product => (
 					<Dish key={product.id} product={product} className={styles.elem} />
 				))}
+				{isAuthenticated && user.role === 'admin' ? (
+					<AddDish className={styles.elem} />
+				) : (
+					<></>
+				)}
 			</div>
 
 			<Footer />

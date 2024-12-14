@@ -30,7 +30,6 @@ export function LoginModal({ isOpen, onClose }) {
 		e.preventDefault()
 		try {
 			await dispatch(register(registerForm)).unwrap()
-			alert('Вы успешно зарегистрировались!')
 			setIsRegister(!isRegister)
 		} catch (error) {
 			alert('Ошибка при регистрации')
@@ -41,7 +40,6 @@ export function LoginModal({ isOpen, onClose }) {
 		e.preventDefault()
 		try {
 			await dispatch(login(loginForm)).unwrap()
-			alert('Вход выполнен!')
 			onClose()
 		} catch (error) {
 			alert('Ошибка входа')

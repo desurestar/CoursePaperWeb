@@ -21,14 +21,7 @@ authRouter.get('/verify', async (req, res) => {
 			return res.status(404).json({ error: 'User not found' })
 		}
 
-		res.json({
-			user: {
-				id: user.id,
-				name: user.name,
-				email: user.email,
-				role: user.role,
-			},
-		})
+		res.json({ user: { id: user.id, name: user.name, email: user.email } })
 	} catch (error) {
 		console.error('Verification error:', error)
 		res.status(401).json({ error: 'Unauthorized' })
@@ -77,15 +70,9 @@ authRouter.post('/login', async (req, res) => {
 			process.env.JWT_SECRET,
 			{ expiresIn: '1h' }
 		)
-
 		res.json({
 			token,
-			user: {
-				id: user.id,
-				name: user.name,
-				email: user.email,
-				role: user.role,
-			},
+			user: { id: user.id, name: user.name, email: user.email },
 		})
 	} catch (error) {
 		console.error('Login error:', error)

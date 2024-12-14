@@ -6,7 +6,6 @@ export const verifyToken = createAsyncThunk(
 	'auth/verifyToken',
 	async (_, { rejectWithValue }) => {
 		const token = localStorage.getItem('token')
-		console.log(token)
 		if (!token) return rejectWithValue('Token not found')
 
 		try {
@@ -31,6 +30,7 @@ export const register = createAsyncThunk('auth/register', async userData => {
 export const login = createAsyncThunk('auth/login', async userData => {
 	const response = await axios.post('http://localhost:5000/api/login', userData)
 	localStorage.setItem('token', response.data.token)
+	localStorage.setItem('role', response.data.user.role)
 	return response.data // Возвращаем данные из ответа
 })
 
@@ -68,6 +68,7 @@ const authSlice = createSlice({
 				state.isAuthenticated = true
 				state.token = action.payload.token
 				state.user = action.payload.user // Сохранение данных пользователя
+				console.log(state.user)
 				state.status = 'succeeded'
 			})
 			.addCase(logout.fulfilled, state => {

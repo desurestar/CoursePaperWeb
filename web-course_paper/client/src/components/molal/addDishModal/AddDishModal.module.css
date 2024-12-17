@@ -37,6 +37,7 @@
 }
 
 .container {
+	align-items: center;
 	background: white;
 	border-radius: 40px;
 	padding: 50px;
@@ -62,7 +63,16 @@
 
 .fieldGroup {
 	display: flex;
+	justify-content: space-between;
 	gap: 10px;
+}
+
+.fieldGroup .field {
+	width: 7rem;
+}
+
+.input {
+	height: 1.7rem;
 }
 
 .preview {
@@ -78,18 +88,31 @@
 	border-radius: 40px;
 }
 
+.empty_preview {
+	font-size: 50px;
+	width: 50%;
+	height: 25rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 40px;
+	background: rgba(142, 142, 142, 0.1);
+}
+
 .submit {
-	background-color: var(--main-color);
-	color: white;
+	background-color: var(--main-color-light);
+	color: black;
 	border: none;
 	border-radius: 10px;
 	padding: 10px;
 	cursor: pointer;
 	font-size: 16px;
+	transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
 }
 
 .submit:hover {
-	background-color: var(--main-color-dark);
+	color: white;
+	background-color: var(--main-color);
 }
 
 .button {
@@ -104,4 +127,8 @@
 
 .modal:focus {
 	outline: none;
+}
+
+p {
+	margin: 0.3rem 0;
 }

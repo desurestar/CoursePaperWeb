@@ -21,3 +21,26 @@ model Users {
   role      String   @default("user")
   createdAt DateTime @default(now())
 }
+
+model Dish {
+  id            Int    @id @default(autoincrement())
+  title         String
+  category      String
+  calories      Float
+  proteins      Float
+  fats          Float
+  carbohydrates Float
+  weight        Float
+  price         Float
+  imageId       Int
+  image         Image  @relation(fields: [imageId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Image {
+  id   Int    @id @default(autoincrement())
+  data Bytes
+  dish Dish[]
+}

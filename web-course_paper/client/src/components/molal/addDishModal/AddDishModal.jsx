@@ -1,9 +1,12 @@
+import axios from 'axios'
 import { useState } from 'react'
 import { VscChromeClose } from 'react-icons/vsc'
 import Modal from 'react-modal'
+import { useDispatch } from 'react-redux'
 import styles from './AddDishModal.module.css'
 
-export function AddDishModal({ isOpen, onClose, onSubmit }) {
+export function AddDishModal({ isOpen, onClose }) {
+	const dispatch = useDispatch()
 	const [formData, setFormData] = useState({
 		title: '',
 		category: '',
@@ -15,7 +18,6 @@ export function AddDishModal({ isOpen, onClose, onSubmit }) {
 		price: '',
 		image: null,
 	})
-
 	const [previewImage, setPreviewImage] = useState(null)
 
 	const categories = [
@@ -29,22 +31,62 @@ export function AddDishModal({ isOpen, onClose, onSubmit }) {
 		'Напитки',
 	]
 
+	// Обработчик изменений в текстовых полях и селектах
 	const handleInputChange = e => {
 		const { name, value } = e.target
-		setFormData({ ...formData, [name]: value })
+		setFormData(prevState => ({
+			...prevState,
+			[name]: value,
+		}))
 	}
 
+	// Обработчик изменения изображения
 	const handleImageChange = e => {
 		const file = e.target.files[0]
 		if (file) {
-			setFormData({ ...formData, image: file })
-			setPreviewImage(URL.createObjectURL(file))
+			setFormData(prevState => ({
+				...prevState,
+				image: file,
+			}))
+
+			// Создание URL для предпросмотра изображения
+			const reader = new FileReader()
+			reader.onload = () => {
+				setPreviewImage(reader.result)
+			}
+			reader.readAsDataURL(file)
 		}
 	}
 
-	const handleSubmit = e => {
+	// Отправка формы
+	const handleSubmit = async e => {
 		e.preventDefault()
-		onSubmit(formData)
+
+		// Создание FormData для отправки на сервер
+		const data = new FormData()
+		Object.keys(formData).forEach(key => {
+			data.append(key, formData[key])
+		})
+
+		try {
+			// Отправка данных на сервер
+			const response = await axios.post(
+				'http://localhost:5000/dish/add-dish',
+				data,
+				{
+					headers: {
+						'Content-Type': 'multipart/form-data',
+					},
+				}
+			)
+
+			// Диспатч успеха (добавьте логику в Redux)
+			dispatch({ type: 'UPLOAD_DISH_SUCCESS', payload: response.data })
+			onClose()
+		} catch (error) {
+			console.error('Ошибка при добавлении блюда:', error)
+			dispatch({ type: 'UPLOAD_DISH_FAIL', payload: error.message })
+		}
 	}
 
 	return (
@@ -63,22 +105,24 @@ export function AddDishModal({ isOpen, onClose, onSubmit }) {
 			}}
 			isOpen={isOpen}
 			onRequestClose={onClose}
-			contentLabel='Add Dish'
 		>
 			<div className={styles.button} onClick={onClose}>
 				<VscChromeClose size={40} className={styles.close} />
 			</div>
 			<div className={styles.container}>
-				{previewImage && (
+				{previewImage ? (
 					<div className={styles.preview}>
 						<img src={previewImage} alt='Preview' />
 					</div>
+				) : (
+					<div className={styles.empty_preview}>IMAGE</div>
 				)}
 				<form onSubmit={handleSubmit} className={styles.form}>
 					<h2 className={styles.title}>Добавить блюдо</h2>
 					<div className={styles.field}>
-						<label>Название блюда:</label>
+						<p>Название блюда:</p>
 						<input
+							className={styles.input}
 							type='text'
 							name='title'
 							value={formData.title}
@@ -87,8 +131,9 @@ export function AddDishModal({ isOpen, onClose, onSubmit }) {
 						/>
 					</div>
 					<div className={styles.field}>
-						<label>Категория:</label>
+						<p>Категория:</p>
 						<select
+							className={styles.input}
 							name='category'
 							value={formData.category}
 							onChange={handleInputChange}
@@ -104,8 +149,9 @@ export function AddDishModal({ isOpen, onClose, onSubmit }) {
 					</div>
 					<div className={styles.fieldGroup}>
 						<div className={styles.field}>
-							<label>Калорийность:</label>
+							<p>Калорийность:</p>
 							<input
+								className={styles.input}
 								type='number'
 								name='calories'
 								value={formData.calories}
@@ -114,8 +160,9 @@ export function AddDishModal({ isOpen, onClose, onSubmit }) {
 							/>
 						</div>
 						<div className={styles.field}>
-							<label>Белки:</label>
+							<p>Белки:</p>
 							<input
+								className={styles.input}
 								type='number'
 								name='proteins'
 								value={formData.proteins}
@@ -124,8 +171,9 @@ export function AddDishModal({ isOpen, onClose, onSubmit }) {
 							/>
 						</div>
 						<div className={styles.field}>
-							<label>Жиры:</label>
+							<p>Жиры:</p>
 							<input
+								className={styles.input}
 								type='number'
 								name='fats'
 								value={formData.fats}
@@ -134,8 +182,9 @@ export function AddDishModal({ isOpen, onClose, onSubmit }) {
 							/>
 						</div>
 						<div className={styles.field}>
-							<label>Углеводы:</label>
+							<p>Углеводы:</p>
 							<input
+								className={styles.input}
 								type='number'
 								name='carbohydrates'
 								value={formData.carbohydrates}
@@ -145,8 +194,9 @@ export function AddDishModal({ isOpen, onClose, onSubmit }) {
 						</div>
 					</div>
 					<div className={styles.field}>
-						<label>Вес (г):</label>
+						<p>Вес (г):</p>
 						<input
+							className={styles.input}
 							type='number'
 							name='weight'
 							value={formData.weight}
@@ -155,8 +205,9 @@ export function AddDishModal({ isOpen, onClose, onSubmit }) {
 						/>
 					</div>
 					<div className={styles.field}>
-						<label>Цена (₽):</label>
+						<p>Цена (₽):</p>
 						<input
+							className={styles.input}
 							type='number'
 							name='price'
 							value={formData.price}
@@ -165,8 +216,9 @@ export function AddDishModal({ isOpen, onClose, onSubmit }) {
 						/>
 					</div>
 					<div className={styles.field}>
-						<label>Фото блюда:</label>
+						<p>Фото блюда:</p>
 						<input
+							className={styles.input_image}
 							type='file'
 							accept='image/*'
 							onChange={handleImageChange}

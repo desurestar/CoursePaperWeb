@@ -35,7 +35,11 @@ export function FullDescDashModal({ isOpen, onClose, product }) {
 			</div>
 			<div className={styles.content}>
 				<div className={styles.image_container}>
-					<img className={styles.image} src={product.image} alt='image dash' />
+					<img
+						className={styles.image}
+						src={`http://localhost:5000/dish/image/${product.imageId}`}
+						alt='image dash'
+					/>
 				</div>
 				<div className={styles.description}>
 					<div className={styles.header}>

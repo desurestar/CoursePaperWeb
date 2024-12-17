@@ -33,7 +33,7 @@ export function DishCardToBasket({ className, product }) {
 					<div className={styles.image_container}>
 						<img
 							className={styles.image}
-							src={product.image}
+							src={`http://localhost:5000/dish/image/${product.imageId}`}
 							alt={`Image dish with id: ${product.id}`}
 						/>
 					</div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useDispatch, useSelector } from 'react-redux'
+import { fetchDishes } from '../../../redux/actions/dishesActions'
 import { verifyToken } from '../../../redux/slices/authSlice'
 import { AddDish } from '../../dishCard/addDish/AddDish'
 import { Dish } from '../../dishCard/Dish'
@@ -18,9 +19,14 @@ export function Main_Page() {
 	const { isAuthenticated } = useSelector(state => state.auth)
 	const user = useSelector(state => state.auth.user)
 	const dispatch = useDispatch()
+	const { dishes } = useSelector(state => state.dishes)
 
 	useEffect(() => {
 		dispatch(verifyToken())
+	}, [dispatch])
+
+	useEffect(() => {
+		dispatch(fetchDishes())
 	}, [dispatch])
 
 	return (
@@ -42,7 +48,7 @@ export function Main_Page() {
 				products={products}
 			/>
 			<div className={styles.content}>
-				{products.map(product => (
+				{dishes.map(product => (
 					<Dish key={product.id} product={product} className={styles.elem} />
 				))}
 				{isAuthenticated && user.role === 'admin' ? (

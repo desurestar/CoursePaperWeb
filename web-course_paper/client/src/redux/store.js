@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import dishesReducer from './slices/addDishSlice'
 import authReducer from './slices/authSlice'
 import basketReducer from './slices/basketSlice'
 
@@ -25,13 +26,17 @@ const loadFromLocalStorage = () => {
 const preloadedState = loadFromLocalStorage()
 
 const store = configureStore({
-	reducer: { basket: basketReducer, auth: authReducer },
+	reducer: { basket: basketReducer, auth: authReducer, dishes: dishesReducer },
 	preloadedState: {
 		basket: preloadedState || {
 			items: [],
 			totalPrice: 0,
 		},
 	},
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware({
+			immutableCheck: false,
+		}),
 })
 
 store.subscribe(() => {

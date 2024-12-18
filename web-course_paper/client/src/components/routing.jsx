@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
+import { Address } from './pages/address/Address'
 import { BasketPage } from './pages/basket/BasketPage'
 import { BookingPage } from './pages/booking/BookingPage'
 import { Contacts } from './pages/Contacts/Contacts'
@@ -65,5 +66,9 @@ export const router = createBrowserRouter([
 	{
 		path: '/drinks',
 		element: <Drinks />,
+	},
+	{
+		path: '/basket/address',
+		element: <Address />,
 	},
 ])

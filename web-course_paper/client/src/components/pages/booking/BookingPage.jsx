@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
 import { images } from '../../images'
-import { NavMenu } from '../../navMenu/NavMenu'
 import { Slider } from '../../slider/Slider'
 import styles from './BookingPage.module.css'
 
@@ -13,7 +12,6 @@ export function BookingPage() {
 	return (
 		<div>
 			<Header />
-			<NavMenu />
 			<div className={styles.blok}>
 				<h2 className={styles.title}>Банкетные залы</h2>
 				<div className={styles.content}>

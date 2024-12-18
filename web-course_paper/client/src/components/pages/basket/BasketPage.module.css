@@ -1,17 +1,23 @@
+.basket {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
 .empty_message {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	font-size: 100px;
 	color: #333;
-
+	height: 250px;
 	text-align: center;
 }
 
 .products_list {
 	border-radius: 20px;
-	overflow-y: scroll;
-	scrollbar-width: none;
 	padding: 0rem 1.5rem;
 	box-shadow: 0 0 3rem rgba(0, 0, 0, 0.1);
-	max-height: 500px;
 	width: 60rem;
 }
 
@@ -97,4 +103,8 @@
 .button:hover {
 	color: #fff;
 	background: var(--main-color);
+}
+
+.footer {
+	margin-top: auto;
 }

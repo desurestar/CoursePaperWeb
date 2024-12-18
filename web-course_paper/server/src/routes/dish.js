@@ -31,6 +31,7 @@ dishRouter.post('/add-dish', upload.single('image'), async (req, res) => {
 				data: req.file.buffer, // Сохраняем бинарные данные изображения
 			},
 		})
+		console.log(image.data)
 
 		// Создаём запись для блюда
 		const dish = await prisma.dish.create({
@@ -46,7 +47,6 @@ dishRouter.post('/add-dish', upload.single('image'), async (req, res) => {
 				imageId: image.id, // Привязываем ID изображения
 			},
 		})
-
 		res.status(201).json(dish) // Возвращаем созданное блюдо
 	} catch (error) {
 		console.error('Error adding dish:', error)
@@ -59,19 +59,20 @@ dishRouter.get('/image/:id', async (req, res) => {
 	try {
 		const { id } = req.params
 
-		// Ищем изображение по ID
-		const dish = await prisma.dish.findUnique({
+		// Извлечение изображения из базы
+		const image = await prisma.image.findUnique({
 			where: { id: parseInt(id) },
-			include: { image: true },
 		})
 
-		if (!dish || !dish.image) {
-			return res.status(404).send('Dish or image not found')
+		if (!image) {
+			return res.status(404).send('Image not found')
 		}
 
-		// Устанавливаем заголовки для отправки изображения
-		res.set('Content-Type', 'image/jpeg')
-		res.send(dish.image.data) // Отправляем бинарные данные изображения
+		// Установка заголовка и отправка данных
+		res.set('Content-Type', 'image/jpeg') // Замените на корректный MIME-тип, если ваше изображение не JPEG
+		res.send(image.data)
+		console.log(image.data)
+		// Отправляем сырые данные изображения
 	} catch (error) {
 		console.error('Error fetching image:', error)
 		res.status(500).send('Internal server error')

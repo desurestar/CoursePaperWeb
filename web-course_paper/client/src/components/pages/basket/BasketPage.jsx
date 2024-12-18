@@ -53,12 +53,14 @@ export function BasketPage() {
 							<div className={styles.total_prise}>{totalPrice} ₽</div>
 						</div>
 						<div className={styles.making}>
-							<button className={styles.button}>Оформить заказ</button>
+							<Link to='./address'>
+								<button className={styles.button}>Оформить заказ</button>
+							</Link>
 						</div>
 					</div>
 				</div>
 			</div>
-			<Footer />
+			<Footer className={styles.footer} />
 		</div>
 	)
 }

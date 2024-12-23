@@ -13,11 +13,66 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
+model User {
   id        Int      @id @default(autoincrement())
   name      String
   email     String   @unique
   password  String
+  cart      Cart?
+  orders    Order[]
   role      String   @default("user")
   createdAt DateTime @default(now())
+}
+
+model Dish {
+  id            Int    @id @default(autoincrement())
+  title         String
+  category      String
+  calories      Int
+  proteins      Int
+  fats          Int
+  carbohydrates Int
+  weight        Int
+  price         Int
+  description   String
+  imageUrl      String
+
+  OrderItem OrderItem[]
+
+  CartDish CartDish[]
+}
+
+model Cart {
+  id     Int        @id @default(autoincrement())
+  user   User       @relation(fields: [userId], references: [id])
+  userId Int        @unique
+  dishes CartDish[]
+}
+
+model CartDish {
+  id       Int  @id @default(autoincrement())
+  cart     Cart @relation(fields: [cartId], references: [id])
+  cartId   Int
+  dish     Dish @relation(fields: [dishId], references: [id])
+  dishId   Int
+  quantity Int
+}
+
+model Order {
+  id            Int         @id @default(autoincrement())
+  user          User        @relation(fields: [userId], references: [id])
+  userId        Int
+  address       String
+  customerName  String
+  customerEmail String
+  orderItems    OrderItem[]
+}
+
+model OrderItem {
+  id       Int   @id @default(autoincrement())
+  order    Order @relation(fields: [orderId], references: [id])
+  orderId  Int
+  dish     Dish  @relation(fields: [dishId], references: [id])
+  dishId   Int
+  quantity Int
 }

@@ -25,14 +25,14 @@ export function Dish({ className, product }) {
 				<div className={styles.image}>
 					<img
 						className={styles.image_ex}
-						src={product.image}
+						src={`http://localhost:5000${product.imageUrl}`}
 						alt={`Image for dish with id: ${product.id}`}
 					/>
 				</div>
 				<div className={styles.content}>
 					<div className={styles.title}>{product.title}</div>
-					<div className={styles.size}>{product.size} г</div>
-					<div className={styles.desc}>{product.desc}</div>
+					<div className={styles.size}>{product.weight} г</div>
+					<div className={styles.desc}>{product.description}</div>
 				</div>
 				<div className={styles.foot}>
 					<div className={styles.price}>{product.price}</div>

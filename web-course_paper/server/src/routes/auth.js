@@ -15,7 +15,7 @@ authRouter.get('/verify', async (req, res) => {
 
 	try {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET)
-		const user = await prisma.users.findUnique({ where: { id: decoded.id } })
+		const user = await prisma.user.findUnique({ where: { id: decoded.id } })
 
 		if (!user) {
 			return res.status(404).json({ error: 'User not found' })
@@ -44,7 +44,7 @@ authRouter.post('/register', async (req, res) => {
 
 	try {
 		const hashedPassword = await bcrypt.hash(password, 10)
-		const user = await prisma.users.create({
+		const user = await prisma.user.create({
 			data: { name, email, password: hashedPassword },
 		})
 		res.status(201).json({ message: 'User created', user })
@@ -65,7 +65,7 @@ authRouter.post('/login', async (req, res) => {
 	}
 
 	try {
-		const user = await prisma.users.findUnique({ where: { email } })
+		const user = await prisma.user.findUnique({ where: { email } })
 		if (!user) return res.status(404).json({ error: 'User not found' })
 
 		const isPasswordValid = await bcrypt.compare(password, user.password)

@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './slices/authSlice'
 import basketReducer from './slices/basketSlice'
+import dishReducer from './slices/dishSlice'
 
 const saveToLocalStorage = state => {
 	try {
@@ -25,7 +26,7 @@ const loadFromLocalStorage = () => {
 const preloadedState = loadFromLocalStorage()
 
 const store = configureStore({
-	reducer: { basket: basketReducer, auth: authReducer },
+	reducer: { basket: basketReducer, auth: authReducer, dish: dishReducer },
 	preloadedState: {
 		basket: preloadedState || {
 			items: [],

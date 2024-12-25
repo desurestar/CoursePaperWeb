@@ -3,7 +3,6 @@ import axios from 'axios'
 
 const API_URL = 'http://localhost:5000/dish'
 
-// Асинхронные thunks
 export const fetchDishes = createAsyncThunk(
 	'dishes/fetchDishes',
 	async category => {
@@ -20,9 +19,7 @@ export const addDish = createAsyncThunk('dishes/addDish', async dishData => {
 		formData.append(key, dishData[key])
 	}
 	const response = await axios.post(`${API_URL}/dishes`, formData, {
-		headers: {
-			'Content-Type': 'multipart/form-data',
-		},
+		headers: { 'Content-Type': 'multipart/form-data' },
 	})
 	return response.data
 })

@@ -1,19 +1,44 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { GoPlusCircle } from 'react-icons/go'
-import { useDispatch } from 'react-redux'
-import { addToBasket } from '../../redux/slices/basketSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart, fetchCart } from '../../redux/slices/cartSlice'
 import { FullDescDashModal } from '../molal/full_desc_dash/FullDescDashModal'
+import { LoginModal } from '../molal/register/RegisterModal'
 import '../variables.css'
 import styles from './Dish.module.css'
 
 export function Dish({ className, product }) {
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	// const { addToBasket } = useBasket()
+	const [isRegisterOpen, setIsRegisterOpen] = useState(false)
+	const { isAuthenticated } = useSelector(state => state.auth)
+	const user = useSelector(state => state.auth.user)
 	const dispatch = useDispatch()
 
-	const handleAddToBasket = e => {
+	useEffect(() => {
+		if (isAuthenticated && user) {
+			dispatch(fetchCart(user.id))
+		}
+	}, [isAuthenticated, user, dispatch])
+
+	const handleAddToBasket = async (e, dishId) => {
 		e.stopPropagation()
-		dispatch(addToBasket(product))
+
+		if (isAuthenticated) {
+			try {
+				await dispatch(addToCart({ userId: user.id, dishId, quantity: 1 }))
+				dispatch(fetchCart(user.id))
+			} catch (error) {
+				console.error('Ошибка при добавлении в корзину:', error)
+			}
+		} else {
+			setIsRegisterOpen(true)
+			setIsModalOpen(false)
+		}
+	}
+
+	const handleIsRegisterOpen = e => {
+		e.stopPropagation()
+		setIsRegisterOpen(!isRegisterOpen)
 	}
 
 	return (
@@ -35,11 +60,18 @@ export function Dish({ className, product }) {
 					<div className={styles.desc}>{product.description}</div>
 				</div>
 				<div className={styles.foot}>
-					<div className={styles.price}>{product.price}</div>
-					<div onClick={e => handleAddToBasket(e)} className={styles.adding}>
+					<div className={styles.price}>{product.price}₽</div>
+					<div
+						onClick={e => handleAddToBasket(e, product.id)}
+						className={styles.adding}
+					>
 						<GoPlusCircle size={35} />
 					</div>
 				</div>
+				<LoginModal
+					isOpen={isRegisterOpen}
+					onClose={e => handleIsRegisterOpen(e)}
+				/>
 				<FullDescDashModal
 					product={product}
 					isOpen={isModalOpen}

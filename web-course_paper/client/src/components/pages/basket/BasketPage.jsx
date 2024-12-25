@@ -1,44 +1,56 @@
+import { useEffect } from 'react'
 import { HiOutlineArrowLeft } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { DishCardToBasket } from '../../dishCard/dish_card_to_basket/DishCardToBasket'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
+
+import { verifyToken } from '../../../redux/slices/authSlice'
+import { fetchCart } from '../../../redux/slices/cartSlice'
 import styles from './BasketPage.module.css'
 
 export function BasketPage() {
-	// const { basketItems } = useBasket()
-	// const temp = 0
-	// const totalPrice = basketItems.reduce(
-	// 	(total, item) => total + item.price,
-	// 	temp
-	// )
-
-	const { items, totalPrice } = useSelector(state => state.basket)
+	const dishes = useSelector(state => state.cart.items)
+	const user = useSelector(state => state.auth.user)
+	const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+	const totalPrice = useSelector(state => state.cart.totalPrice)
+	const userId = isAuthenticated && user ? user.id : null
 	const dispatch = useDispatch()
+	useEffect(() => {
+		if (userId) {
+			dispatch(fetchCart(userId))
+		}
+	}, [dispatch, userId])
 
-	const handleRemoveFormBasket = id => {
-		dispatch(removeFormBasket(id))
+	useEffect(() => {
+		dispatch(verifyToken())
+	}, [dispatch])
+
+	const navigate = useNavigate()
+
+	const goBack = () => {
+		navigate(-1)
 	}
 
 	return (
 		<div className={styles.basket}>
 			<Header />
 			<div className={styles.container}>
-				<button className={styles.exit}>
-					<Link className={styles.left} to='/'>
+				<div className={styles.exit}>
+					<div onClick={() => goBack()} className={styles.left}>
 						<HiOutlineArrowLeft className={styles.left} />
-					</Link>
-				</button>
+					</div>
+				</div>
 				<h2 className={styles.name}>Корзина</h2>
 				<div className={styles.content}>
 					<div className={styles.products_list}>
-						{items.length === 0 ? (
+						{dishes.length === 0 ? (
 							<div className={styles.empty}>
 								<div className={styles.empty_message}>Здесь пусто</div>
 							</div>
 						) : (
-							items.map(product => (
+							dishes.map(product => (
 								<DishCardToBasket
 									key={product.id}
 									className={styles.item}
@@ -53,12 +65,14 @@ export function BasketPage() {
 							<div className={styles.total_prise}>{totalPrice} ₽</div>
 						</div>
 						<div className={styles.making}>
-							<button className={styles.button}>Оформить заказ</button>
+							<Link to={dishes.length !== 0 ? './address' : '#'}>
+								<button className={styles.button}>Оформить заказ</button>
+							</Link>
 						</div>
 					</div>
 				</div>
 			</div>
-			<Footer />
+			<Footer className={styles.footer} />
 		</div>
 	)
 }

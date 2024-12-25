@@ -8,7 +8,6 @@ import { fileURLToPath } from 'url'
 const dishRouter = express.Router()
 const prisma = new PrismaClient()
 
-// Настройка multer для загрузки файлов
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
 		cb(null, 'uploads/')
@@ -20,16 +19,13 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage })
 
-// Создание папки для загрузки файлов, если она не существует
 if (!fs.existsSync('uploads')) {
 	fs.mkdirSync('uploads')
 }
 
-// Получение пути к текущему файлу
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// Маршрут для добавления блюда с загрузкой изображения
 dishRouter.post('/dishes', upload.single('image'), async (req, res) => {
 	const {
 		title,
@@ -65,7 +61,6 @@ dishRouter.post('/dishes', upload.single('image'), async (req, res) => {
 	}
 })
 
-// Маршрут для получения всех блюд
 dishRouter.get('/dishes', async (req, res) => {
 	const { category } = req.query
 	try {
@@ -83,7 +78,6 @@ dishRouter.get('/dishes', async (req, res) => {
 	}
 })
 
-// Маршрут для удаления блюда
 dishRouter.delete('/dishes/:id', async (req, res) => {
 	const { id } = req.params
 	try {
@@ -95,7 +89,9 @@ dishRouter.delete('/dishes/:id', async (req, res) => {
 			return res.status(404).json({ error: 'Dish not found' })
 		}
 
-		// Удаление файла изображения, если он существует
+		await prisma.cartDish.deleteMany({ where: { dishId: parseInt(id) } })
+		await prisma.orderItem.deleteMany({ where: { dishId: parseInt(id) } })
+
 		if (dish.imageUrl) {
 			const filePath = path.join(__dirname, '..', dish.imageUrl)
 			if (fs.existsSync(filePath)) {
@@ -109,6 +105,7 @@ dishRouter.delete('/dishes/:id', async (req, res) => {
 
 		res.json({ message: 'Dish deleted successfully' })
 	} catch (error) {
+		console.error('Error deleting dish:', error)
 		res.status(500).json({ error: 'Failed to delete dish' })
 	}
 })

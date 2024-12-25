@@ -25,7 +25,7 @@ model User {
 }
 
 model Dish {
-  id            Int    @id @default(autoincrement())
+  id            Int     @id @default(autoincrement())
   title         String
   category      String
   calories      Int
@@ -34,12 +34,11 @@ model Dish {
   carbohydrates Int
   weight        Int
   price         Int
-  description   String
+  description   String?
   imageUrl      String
 
   OrderItem OrderItem[]
-
-  CartDish CartDish[]
+  CartDish  CartDish[]
 }
 
 model Cart {
@@ -51,9 +50,18 @@ model Cart {
 
 model CartDish {
   id       Int  @id @default(autoincrement())
-  cart     Cart @relation(fields: [cartId], references: [id])
+  cart     Cart @relation(fields: [cartId], references: [id], onDelete: Cascade)
   cartId   Int
   dish     Dish @relation(fields: [dishId], references: [id])
+  dishId   Int
+  quantity Int
+}
+
+model OrderItem {
+  id       Int   @id @default(autoincrement())
+  order    Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId  Int
+  dish     Dish  @relation(fields: [dishId], references: [id])
   dishId   Int
   quantity Int
 }
@@ -66,13 +74,4 @@ model Order {
   customerName  String
   customerEmail String
   orderItems    OrderItem[]
-}
-
-model OrderItem {
-  id       Int   @id @default(autoincrement())
-  order    Order @relation(fields: [orderId], references: [id])
-  orderId  Int
-  dish     Dish  @relation(fields: [dishId], references: [id])
-  dishId   Int
-  quantity Int
 }

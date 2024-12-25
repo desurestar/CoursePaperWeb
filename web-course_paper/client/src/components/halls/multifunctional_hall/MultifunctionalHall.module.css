@@ -1,0 +1,62 @@
+.page {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.hall_container {
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px rgb(229, 228, 228) solid;
+	box-shadow: 0 0 3rem rgba(0, 0, 0, 0.1);
+	border-radius: 20px;
+}
+
+.hall_title {
+	text-align: center;
+	color: var(--main-color);
+	margin-bottom: 20px;
+}
+
+.hall_content {
+	font-size: 28px;
+}
+
+.hall_section_title {
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+.hall_list {
+	list-style-type: none;
+	padding: 0;
+}
+
+.hall_list li {
+	margin-bottom: 10px;
+}
+
+.slider {
+	margin-bottom: 2rem;
+}
+
+.contact {
+	margin: 12px auto;
+	padding: 20px;
+}
+
+.text {
+	font-size: 24px;
+}
+
+.phone {
+	transition: color 0.15s ease-in-out;
+}
+
+.phone:hover {
+	color: var(--main-color);
+}
+
+.footer {
+	margin-top: auto;
+}

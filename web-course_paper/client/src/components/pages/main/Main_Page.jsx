@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useDispatch, useSelector } from 'react-redux'
 import { verifyToken } from '../../../redux/slices/authSlice'
+import { fetchCart } from '../../../redux/slices/cartSlice'
 import { AddDish } from '../../dishCard/addDish/AddDish'
 import { Dish } from '../../dishCard/Dish'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
 import { images } from '../../images'
-import { BasketModal } from '../../molal/basket_modal/BasketModal'
 import { NavMenu } from '../../navMenu/NavMenu'
 import { products } from '../../product'
 import { Slider } from '../../slider/Slider'
@@ -23,6 +23,12 @@ export function Main_Page() {
 		dispatch(verifyToken())
 	}, [dispatch])
 
+	useEffect(() => {
+		if (isAuthenticated && user) {
+			dispatch(fetchCart(user.id))
+		}
+	}, [dispatch, user, isAuthenticated])
+
 	return (
 		<div className={styles.page}>
 			<Helmet>
@@ -33,14 +39,7 @@ export function Main_Page() {
 				<NavMenu />
 			</div>
 			<Slider images={images} />
-			<div onClick={() => setIsModalOpen(true)} className={styles.popular}>
-				Популярное
-			</div>
-			<BasketModal
-				isOpen={isModalOpen}
-				onClose={() => setIsModalOpen(false)}
-				products={products}
-			/>
+			<div className={styles.title}>Популярное</div>
 			<div className={styles.content}>
 				{products.map(product => (
 					<Dish key={product.id} product={product} className={styles.elem} />

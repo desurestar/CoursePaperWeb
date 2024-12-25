@@ -1,0 +1,147 @@
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.overlay_after_open {
+	background-color: rgba(50, 90, 92, 0.4);
+}
+
+.overlay_before_close {
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.modal {
+	position: absolute;
+	opacity: 0;
+	width: 70vw;
+	transition: opacity 0.2s ease-in-out;
+}
+
+.modal_after_open {
+	opacity: 1;
+}
+
+.modal_before_close {
+	opacity: 0;
+}
+
+.container {
+	align-items: center;
+	background: white;
+	border-radius: 40px;
+	padding: 50px;
+	max-height: 700px;
+	display: flex;
+	overflow-y: scroll;
+	scrollbar-width: none;
+	gap: 20px;
+}
+
+.form {
+	padding-left: 50px;
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+}
+
+.field_group {
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.field_group .field {
+	width: 7rem;
+}
+
+.input {
+	border: 1px #999 solid;
+	border-radius: 5px;
+	padding: 0px 0.2rem;
+	height: 1.7rem;
+	outline: none;
+}
+
+.preview {
+	width: 50%;
+	display: flex;
+	justify-content: center;
+}
+
+.preview img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: fill;
+	border-radius: 40px;
+}
+
+.empty_preview {
+	font-size: 50px;
+	width: 50%;
+	height: 25rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 40px;
+	background: rgba(142, 142, 142, 0.1);
+}
+
+.submit {
+	background-color: var(--main-color-light);
+	color: black;
+	border: none;
+	border-radius: 10px;
+	padding: 10px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+.submit:hover {
+	color: white;
+	background-color: var(--main-color);
+}
+
+.button {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.close {
+	margin: 30px;
+	color: white;
+}
+
+.modal:focus {
+	outline: none;
+}
+
+p {
+	margin: 0.3rem 0;
+}
+
+.description {
+	border: 1px solid #999;
+	padding: 0.2rem 0.2rem;
+	min-height: 60px;
+	width: 100%;
+	box-sizing: border-box;
+	border-radius: 5px;
+	outline: none;
+}

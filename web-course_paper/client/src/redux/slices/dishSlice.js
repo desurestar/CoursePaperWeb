@@ -29,6 +29,18 @@ export const deleteDish = createAsyncThunk('dishes/deleteDish', async id => {
 	return id
 })
 
+export const editDish = createAsyncThunk('dishes/editDish', async dishData => {
+	const { id, ...updatedData } = dishData
+	const formData = new FormData()
+	for (const key in updatedData) {
+		formData.append(key, updatedData[key])
+	}
+	const response = await axios.put(`${API_URL}/dishes/${id}`, formData, {
+		headers: { 'Content-Type': 'multipart/form-data' },
+	})
+	return response.data
+})
+
 const dishSlice = createSlice({
 	name: 'dishes',
 	initialState: {
@@ -55,6 +67,15 @@ const dishSlice = createSlice({
 			})
 			.addCase(deleteDish.fulfilled, (state, action) => {
 				state.items = state.items.filter(dish => dish.id !== action.payload)
+			})
+			.addCase(editDish.fulfilled, (state, action) => {
+				const updatedDish = action.payload
+				const existingIndex = state.items.findIndex(
+					dish => dish.id === updatedDish.id
+				)
+				if (existingIndex !== -1) {
+					state.items[existingIndex] = updatedDish
+				}
 			})
 	},
 })

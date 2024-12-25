@@ -78,6 +78,64 @@ dishRouter.get('/dishes', async (req, res) => {
 	}
 })
 
+dishRouter.put('/dishes/:id', upload.single('image'), async (req, res) => {
+	const { id } = req.params
+	const {
+		title,
+		category,
+		calories,
+		proteins,
+		fats,
+		carbohydrates,
+		weight,
+		price,
+		description,
+	} = req.body
+
+	let imageUrl
+	if (req.file) {
+		imageUrl = `/uploads/${req.file.filename}`
+	}
+
+	try {
+		const existingDish = await prisma.dish.findUnique({
+			where: { id: parseInt(id) },
+		})
+
+		if (!existingDish) {
+			return res.status(404).json({ error: 'Dish not found' })
+		}
+
+		if (imageUrl && existingDish.imageUrl) {
+			const oldImagePath = path.join(__dirname, '..', existingDish.imageUrl)
+			if (fs.existsSync(oldImagePath)) {
+				fs.unlinkSync(oldImagePath)
+			}
+		}
+
+		const updatedDish = await prisma.dish.update({
+			where: { id: parseInt(id) },
+			data: {
+				title,
+				category,
+				calories: parseInt(calories),
+				proteins: parseInt(proteins),
+				fats: parseInt(fats),
+				carbohydrates: parseInt(carbohydrates),
+				weight: parseInt(weight),
+				price: parseInt(price),
+				description,
+				...(imageUrl && { imageUrl }),
+			},
+		})
+
+		res.json(updatedDish)
+	} catch (error) {
+		console.error('Error editing dish:', error)
+		res.status(500).json({ error: 'Failed to edit dish' })
+	}
+})
+
 dishRouter.delete('/dishes/:id', async (req, res) => {
 	const { id } = req.params
 	try {

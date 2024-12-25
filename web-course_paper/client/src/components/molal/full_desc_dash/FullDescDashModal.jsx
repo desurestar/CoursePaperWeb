@@ -52,6 +52,7 @@ export function FullDescDashModal({ isOpen, onClose, product }) {
 			}}
 			isOpen={isOpen}
 			onRequestClose={onClose}
+			shouldCloseOnOverlayClick={false}
 			contentLabel='Description Dash'
 		>
 			<Helmet>
@@ -59,12 +60,14 @@ export function FullDescDashModal({ isOpen, onClose, product }) {
 			</Helmet>
 			<div className={styles.buttons} onClick={onClose}>
 				{isAuthenticated && user.role === 'admin' && (
-					<div
-						onClick={() => handleDeleteDish(product.id)}
-						className={styles.delete}
-					>
-						Удалить
-					</div>
+					<>
+						<div
+							onClick={() => handleDeleteDish(product.id)}
+							className={styles.delete}
+						>
+							Удалить
+						</div>
+					</>
 				)}
 				<div>.</div>
 				<VscChromeClose size={40} className={styles.close} />

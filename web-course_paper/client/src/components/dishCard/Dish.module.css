@@ -92,3 +92,12 @@
 	color: white;
 	background-color: var(--main-color);
 }
+.edit {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.edit_icon:hover {
+	color: var(--main-color);
+}

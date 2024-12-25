@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { VscChromeClose } from 'react-icons/vsc'
 import Modal from 'react-modal'
 import { useDispatch } from 'react-redux'
@@ -75,17 +76,20 @@ export function AddDishModal({ isOpen, onClose }) {
 			closeTimeoutMS={200}
 			overlayClassName={{
 				base: styles.overlay,
-				afterOpen: styles['overlay--after-open'],
-				beforeClose: styles['overlay--before-close'],
+				afterOpen: styles.overlay_after_open,
+				beforeClose: styles.overlay_before_close,
 			}}
 			className={{
 				base: styles.modal,
-				afterOpen: styles['modal--after-open'],
-				beforeClose: styles['modal--before-close'],
+				afterOpen: styles.modal_after_open,
+				beforeClose: styles.modal_before_close,
 			}}
 			isOpen={isOpen}
 			onRequestClose={onClose}
 		>
+			<Helmet>
+				<title>Zagrebin Restaurant | Добавить блюдо</title>
+			</Helmet>
 			<div className={styles.button} onClick={onClose}>
 				<VscChromeClose size={40} className={styles.close} />
 			</div>
@@ -108,6 +112,7 @@ export function AddDishModal({ isOpen, onClose }) {
 							value={formData.title}
 							onChange={handleInputChange}
 							required
+							aria-label='Название блюда'
 						/>
 					</div>
 					<div className={styles.field}>
@@ -118,6 +123,7 @@ export function AddDishModal({ isOpen, onClose }) {
 							value={formData.category}
 							onChange={handleInputChange}
 							required
+							aria-label='Категория'
 						>
 							<option value=''>Выберите категорию</option>
 							{categories.map(category => (
@@ -127,7 +133,7 @@ export function AddDishModal({ isOpen, onClose }) {
 							))}
 						</select>
 					</div>
-					<div className={styles.fieldGroup}>
+					<div className={styles.field_group}>
 						<div className={styles.field}>
 							<p>Калорийность:</p>
 							<input
@@ -137,6 +143,7 @@ export function AddDishModal({ isOpen, onClose }) {
 								value={formData.calories}
 								onChange={handleInputChange}
 								required
+								aria-label='Калорийность'
 							/>
 						</div>
 						<div className={styles.field}>
@@ -148,6 +155,7 @@ export function AddDishModal({ isOpen, onClose }) {
 								value={formData.proteins}
 								onChange={handleInputChange}
 								required
+								aria-label='Белки'
 							/>
 						</div>
 						<div className={styles.field}>
@@ -159,6 +167,7 @@ export function AddDishModal({ isOpen, onClose }) {
 								value={formData.fats}
 								onChange={handleInputChange}
 								required
+								aria-label='Жиры'
 							/>
 						</div>
 						<div className={styles.field}>
@@ -170,6 +179,7 @@ export function AddDishModal({ isOpen, onClose }) {
 								value={formData.carbohydrates}
 								onChange={handleInputChange}
 								required
+								aria-label='Углеводы'
 							/>
 						</div>
 					</div>
@@ -182,6 +192,7 @@ export function AddDishModal({ isOpen, onClose }) {
 							value={formData.weight}
 							onChange={handleInputChange}
 							required
+							aria-label='Вес'
 						/>
 					</div>
 					<div className={styles.field}>
@@ -193,6 +204,7 @@ export function AddDishModal({ isOpen, onClose }) {
 							value={formData.price}
 							onChange={handleInputChange}
 							required
+							aria-label='Цена'
 						/>
 					</div>
 					<div className={styles.field}>
@@ -220,9 +232,14 @@ export function AddDishModal({ isOpen, onClose }) {
 							accept='image/*'
 							onChange={handleImageChange}
 							required
+							aria-label='Фото блюда'
 						/>
 					</div>
-					<button type='submit' className={styles.submit}>
+					<button
+						type='submit'
+						className={styles.submit}
+						aria-label='Добавить блюдо'
+					>
 						Добавить
 					</button>
 				</form>

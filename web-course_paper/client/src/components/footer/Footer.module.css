@@ -1,17 +1,17 @@
 .container {
-	height: 350px;
+	/* height: 350px; */
 	margin: 32px 0px;
 	width: 100%;
-	padding: 64px 0px;
+	padding: 20px 0px;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 
 	border-top: 1px #d1d1d1 solid;
 }
 
 .background_content {
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	gap: 30px;
 }
@@ -19,6 +19,11 @@
 .link {
 	text-decoration: none;
 	color: #999;
+	transition: color 0.15s ease-in-out;
+}
+
+.link:hover {
+	color: var(--main-color);
 }
 
 .applications {

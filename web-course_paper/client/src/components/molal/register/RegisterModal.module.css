@@ -58,6 +58,10 @@
 	cursor: pointer;
 }
 
+.login_button {
+	transition: color 0.1s ease-in-out;
+}
+
 .login_button:hover {
 	color: var(--main-color);
 }
@@ -74,13 +78,12 @@
 }
 
 .input:focus {
-	border-color: #4cafb1;
-	box-shadow: 0 0 5px rgba(76, 175, 177, 0.5);
+	border-color: var(--main-color-light);
+	box-shadow: 0 0 5px var(--main-color-light);
 }
 
 .push_button {
-	background: #4cafb1;
-	color: #fff;
+	background: var(--main-color-light);
 	border: none;
 	border-radius: 8px;
 	padding: 12px 20px;
@@ -88,10 +91,12 @@
 	cursor: pointer;
 	width: 100%;
 	margin-top: 1.5rem;
+	transition: color 0.15s ease-in-out, background 0.15s ease-in-out;
 }
 
 .push_button:hover {
-	background: #3b9d99;
+	color: white;
+	background: var(--main-color);
 }
 
 .footer {

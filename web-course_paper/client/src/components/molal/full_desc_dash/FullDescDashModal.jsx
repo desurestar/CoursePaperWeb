@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { CiShoppingBasket } from 'react-icons/ci'
 import { VscChromeClose } from 'react-icons/vsc'
 import Modal from 'react-modal'
@@ -5,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, fetchCart } from '../../../redux/slices/cartSlice'
 import { deleteDish } from '../../../redux/slices/dishSlice'
 import styles from './FullDescDashModal.module.css'
-
 export function FullDescDashModal({ isOpen, onClose, product }) {
 	const dispatch = useDispatch()
 	const { isAuthenticated, user } = useSelector(state => state.auth)
@@ -54,8 +54,11 @@ export function FullDescDashModal({ isOpen, onClose, product }) {
 			onRequestClose={onClose}
 			contentLabel='Description Dash'
 		>
+			<Helmet>
+				<title>Zagrebin Restaurant | Описание блюда</title>
+			</Helmet>
 			<div className={styles.buttons} onClick={onClose}>
-				{isAuthenticated && (
+				{isAuthenticated && user.role === 'admin' && (
 					<div
 						onClick={() => handleDeleteDish(product.id)}
 						className={styles.delete}

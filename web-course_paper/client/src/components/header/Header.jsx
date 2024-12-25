@@ -23,9 +23,7 @@ export function Header() {
 				</Link>
 			</nav>
 			<div className={styles.actions}>
-				<div href='tel:+7XXXXXXXXXX' className={styles.phone}>
-					+7 (926) 927-32-76
-				</div>
+				<div className={styles.phone}>+7 (926) 927-32-76</div>
 				<Timer className={styles.timer} />
 			</div>
 		</header>

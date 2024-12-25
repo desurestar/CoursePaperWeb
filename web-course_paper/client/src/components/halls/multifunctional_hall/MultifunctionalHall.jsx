@@ -1,16 +1,20 @@
+import { Helmet } from 'react-helmet-async'
 import { BookingNav } from '../../booking_nav/BookingNav'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
-import { images } from '../../images'
+import { multifunctionalImages } from '../../images'
 import { Slider } from '../../slider/Slider'
 import styles from './MultifunctionalHall.module.css'
 
 export function MultifunctionalHall() {
 	return (
 		<div className={styles.page}>
+			<Helmet>
+				<title>Zagrebin Restaurant | Многофункциональные залы</title>
+			</Helmet>
 			<Header />
 			<BookingNav title={'Многофункциональный зал'} />
-			<Slider className={styles.slider} images={images} />
+			<Slider className={styles.slider} images={multifunctionalImages} />
 			<div className={styles.hall_container}>
 				<h1 className={styles.hall_title}>Многофункциональный зал</h1>
 				<div className={styles.hall_content}>

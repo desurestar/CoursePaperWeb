@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchDishes } from '../../../redux/slices/dishSlice'
+import { AddDish } from '../../dishCard/addDish/AddDish'
 import { Dish } from '../../dishCard/Dish'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
@@ -12,6 +13,7 @@ import styles from './CategoryPage.module.css'
 
 export function CategoryPage({ title, category }) {
 	const dishes = useSelector(state => state.dish.items)
+	const { isAuthenticated, user } = useSelector(state => state.auth)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -33,6 +35,9 @@ export function CategoryPage({ title, category }) {
 				{dishes.map(product => (
 					<Dish key={product.id} product={product} className={styles.elem} />
 				))}
+				{isAuthenticated && user.role === 'admin' && (
+					<AddDish className={styles.elem}></AddDish>
+				)}
 			</div>
 			<Footer />
 		</div>

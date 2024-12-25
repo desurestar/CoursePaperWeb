@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { HiOutlineArrowLeft } from 'react-icons/hi'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -63,6 +64,9 @@ export function Address({ className }) {
 
 	return (
 		<div className={className}>
+			<Helmet>
+				<title>Zagrebin Restaurant | Оформление заказа</title>
+			</Helmet>
 			<div className={styles.content}>
 				<Header />
 				<div className={styles.container}>

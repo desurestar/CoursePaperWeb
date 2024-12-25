@@ -1,11 +1,14 @@
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
 import styles from './Events.module.css'
-
 export function Events() {
 	return (
 		<div className={styles.page}>
+			<Helmet>
+				<title>Zagrebin Restaurant | Мероприятия</title>
+			</Helmet>
 			<Header />
 			<div className={styles.event_container}>
 				<h1 className={styles.event_title}>

@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { HiOutlineArrowLeft } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { verifyToken } from '../../../redux/slices/authSlice'
+import { fetchCart } from '../../../redux/slices/cartSlice'
 import { DishCardToBasket } from '../../dishCard/dish_card_to_basket/DishCardToBasket'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
-
-import { verifyToken } from '../../../redux/slices/authSlice'
-import { fetchCart } from '../../../redux/slices/cartSlice'
 import styles from './BasketPage.module.css'
 
 export function BasketPage() {
@@ -35,6 +35,9 @@ export function BasketPage() {
 
 	return (
 		<div className={styles.basket}>
+			<Helmet>
+				<title>Zagrebin Restaurant | Корзина</title>
+			</Helmet>
 			<Header />
 			<div className={styles.container}>
 				<div className={styles.exit}>

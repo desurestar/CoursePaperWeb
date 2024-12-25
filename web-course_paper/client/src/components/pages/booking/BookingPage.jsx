@@ -1,16 +1,23 @@
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
-import { images } from '../../images'
+import {
+	banquetImages,
+	multifunctionalImages,
+	regularImages,
+} from '../../images'
 import { Slider } from '../../slider/Slider'
 import styles from './BookingPage.module.css'
-
 export function BookingPage() {
-	const banket_images = images
-	const common_images = images
-	const multifunction_images = images
+	const banket_images = banquetImages
+	const common_images = regularImages
+	const multifunction_images = multifunctionalImages
 	return (
 		<div>
+			<Helmet>
+				<title>Zagrebin Restaurant | Банкетные залы</title>
+			</Helmet>
 			<Header />
 			<div className={styles.blok}>
 				<h2 className={styles.title}>Банкетные залы</h2>

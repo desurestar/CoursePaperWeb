@@ -1,16 +1,20 @@
+import { Helmet } from 'react-helmet-async'
 import { BookingNav } from '../../booking_nav/BookingNav'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
-import { images } from '../../images'
+import { regularImages } from '../../images'
 import { Slider } from '../../slider/Slider'
 import styles from './RegularHall.module.css'
 
 export function RegularHall() {
 	return (
 		<div className={styles.page}>
+			<Helmet>
+				<title>Zagrebin Restaurant | Обычные залы</title>
+			</Helmet>
 			<Header />
 			<BookingNav title={'Обычный зал'} />
-			<Slider className={styles.slider} images={images} />
+			<Slider className={styles.slider} images={regularImages} />
 			<div className={styles.hall_container}>
 				<h1 className={styles.hall_title}>Обычный зал</h1>
 				<div className={styles.hall_content}>

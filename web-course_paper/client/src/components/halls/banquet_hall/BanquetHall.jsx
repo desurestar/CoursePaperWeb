@@ -1,16 +1,20 @@
+import { Helmet } from 'react-helmet-async'
 import { BookingNav } from '../../booking_nav/BookingNav'
 import { Footer } from '../../footer/Footer'
 import { Header } from '../../header/Header'
-import { images } from '../../images'
+import { banquetImages } from '../../images'
 import { Slider } from '../../slider/Slider'
 import styles from './BanquetHall.module.css'
 
 export function BanquetHall() {
 	return (
 		<div className={styles.page}>
+			<Helmet>
+				<title>Zagrebin Restaurant | Банкетные залы</title>
+			</Helmet>
 			<Header />
 			<BookingNav title={'Банкетный зал'} />
-			<Slider className={styles.slider} images={images} />
+			<Slider className={styles.slider} images={banquetImages} />
 			<div className={styles.hall_container}>
 				<h1 className={styles.hall_title}>Банкетный зал</h1>
 				<div className={styles.hall_content}>

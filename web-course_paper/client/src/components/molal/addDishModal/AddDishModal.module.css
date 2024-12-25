@@ -12,11 +12,11 @@
 	transition: background-color 0.2s ease-in-out;
 }
 
-.overlay--after-open {
+.overlay_after_open {
 	background-color: rgba(50, 90, 92, 0.4);
 }
 
-.overlay--before-close {
+.overlay_before_close {
 	background-color: rgba(0, 0, 0, 0);
 }
 
@@ -24,15 +24,14 @@
 	position: absolute;
 	opacity: 0;
 	width: 70vw;
-
 	transition: opacity 0.2s ease-in-out;
 }
 
-.modal--after-open {
+.modal_after_open {
 	opacity: 1;
 }
 
-.modal--before-close {
+.modal_before_close {
 	opacity: 0;
 }
 
@@ -61,13 +60,13 @@
 	flex-direction: column;
 }
 
-.fieldGroup {
+.field_group {
 	display: flex;
 	justify-content: space-between;
 	gap: 10px;
 }
 
-.fieldGroup .field {
+.field_group .field {
 	width: 7rem;
 }
 
@@ -138,11 +137,11 @@ p {
 }
 
 .description {
-	border: 1px solid #999; /* Граница, чтобы выглядело как поле ввода */
+	border: 1px solid #999;
 	padding: 0.2rem 0.2rem;
-	min-height: 60px; /* Минимальная высота */
-	width: 100%; /* Занимает всю ширину родителя */
-	box-sizing: border-box; /* Учитывает padding и border в размерах */
-	border-radius: 5px; /* Сглаженные углы */
-	outline: none; /* Убирает обводку при фокусе */
+	min-height: 60px;
+	width: 100%;
+	box-sizing: border-box;
+	border-radius: 5px;
+	outline: none;
 }

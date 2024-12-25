@@ -68,7 +68,6 @@ const authSlice = createSlice({
 				state.isAuthenticated = true
 				state.token = action.payload.token
 				state.user = action.payload.user // Сохранение данных пользователя
-				console.log(state.user)
 				state.status = 'succeeded'
 			})
 			.addCase(logout.fulfilled, state => {

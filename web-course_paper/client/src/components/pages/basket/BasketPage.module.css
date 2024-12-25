@@ -18,7 +18,11 @@
 	border-radius: 20px;
 	padding: 0rem 1.5rem;
 	box-shadow: 0 0 3rem rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
 	width: 60rem;
+=======
+	width: 55rem;
+>>>>>>> test
 }
 
 .item {

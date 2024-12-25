@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import Modal from 'react-modal'
 import { useDispatch } from 'react-redux'
 import { login, register } from '../../../redux/slices/authSlice'
@@ -70,62 +71,72 @@ export function LoginModal({ isOpen, onClose }) {
 			<div className={styles.content}>
 				<h2 className={styles.title}>{isRegister ? 'Регистрация' : 'Вход'}</h2>
 				{isRegister ? (
-					<form
-						method='POST'
-						action='/register'
-						onSubmit={handleSubmitRegister}
-						className={styles.form}
-					>
-						<input
-							className={styles.input}
-							name='name'
-							type='text'
-							placeholder='Имя'
-							onChange={handleChangeRegister}
-						/>
-						<input
-							className={styles.input}
-							name='email'
-							type='email'
-							placeholder='Email'
-							onChange={handleChangeRegister}
-						/>
-						<input
-							className={styles.input}
-							name='password'
-							type='password'
-							placeholder='Пароль'
-							onChange={handleChangeRegister}
-						/>
-						<button type='submit' className={styles.push_button}>
-							Создать аккаунт
-						</button>
-					</form>
+					<>
+						<Helmet>
+							<title>Zagrebin Restaurant | Регистрация</title>
+						</Helmet>
+						<form
+							method='POST'
+							action='/register'
+							onSubmit={handleSubmitRegister}
+							className={styles.form}
+						>
+							<input
+								className={styles.input}
+								name='name'
+								type='text'
+								placeholder='Имя'
+								onChange={handleChangeRegister}
+							/>
+							<input
+								className={styles.input}
+								name='email'
+								type='email'
+								placeholder='Email'
+								onChange={handleChangeRegister}
+							/>
+							<input
+								className={styles.input}
+								name='password'
+								type='password'
+								placeholder='Пароль'
+								onChange={handleChangeRegister}
+							/>
+							<button type='submit' className={styles.push_button}>
+								Создать аккаунт
+							</button>
+						</form>
+					</>
 				) : (
-					<form
-						method='POST'
-						action='/login'
-						onSubmit={handleSubmitLogin}
-						className={styles.form}
-					>
-						<input
-							className={styles.input}
-							name='email'
-							type='email'
-							placeholder='Email'
-							onChange={handleChangeLogin}
-						/>
-						<input
-							className={styles.input}
-							name='password'
-							type='password'
-							placeholder='Пароль'
-							onChange={handleChangeLogin}
-						/>
-						<button type='submit' className={styles.push_button}>
-							Войти
-						</button>
-					</form>
+					<>
+						<Helmet>
+							<title>Zagrebin Restaurant | Вход</title>
+						</Helmet>
+						<form
+							method='POST'
+							action='/login'
+							onSubmit={handleSubmitLogin}
+							className={styles.form}
+						>
+							<input
+								className={styles.input}
+								name='email'
+								type='email'
+								placeholder='Email'
+								onChange={handleChangeLogin}
+							/>
+							<input
+								className={styles.input}
+								name='password'
+								type='password'
+								placeholder='Пароль'
+								onChange={handleChangeLogin}
+							/>
+							<button type='submit' className={styles.push_button}>
+								Войти
+							</button>
+						</form>
+					</>
 				)}
 				{isRegister ? (
 					<>

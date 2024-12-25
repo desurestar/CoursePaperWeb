@@ -1,14 +1,15 @@
-import { HelmetProvider } from 'react-helmet'
+import { BrowserRouter } from 'react-router-dom'
 import './App.css'
+import { AppRoutes } from './AppRoutes'
 import './components/header/Header'
-
-import { Main_Page } from './components/pages/main/Main_Page'
 
 function App() {
 	return (
-		<HelmetProvider>
-			<Main_Page />
-		</HelmetProvider>
+		<>
+			<BrowserRouter>
+				<AppRoutes />
+			</BrowserRouter>
+		</>
 	)
 }
 

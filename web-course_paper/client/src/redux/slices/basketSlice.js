@@ -11,7 +11,7 @@ const basketSlice = createSlice({
 	reducers: {
 		addToBasket(state, action) {
 			const dish = action.payload
-			const existingItems = state.items.find(item => item.id === dish.id)
+			const existingItems = state.items.findIndex(item => item.id === dish.id)
 
 			if (existingItems) {
 				existingItems.quantity++
@@ -33,7 +33,7 @@ const basketSlice = createSlice({
 		},
 		removeOneItem(state, action) {
 			const id = action.payload
-			const index = state.items.find(item => item.id === id)
+			const index = state.items.findIndex(item => item.id === id)
 
 			if (index !== -1) {
 				const existingItem = state.items[index]

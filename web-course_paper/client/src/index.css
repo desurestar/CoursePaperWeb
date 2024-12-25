@@ -11,6 +11,5 @@ body {
 	font-family: 'Nunito', sans-serif;
 	max-width: 2000px;
 	min-width: 1200px;
-	margin-left: 8%;
-	margin-right: 8%;
+	margin: 0 10%;
 }

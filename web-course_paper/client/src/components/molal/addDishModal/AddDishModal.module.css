@@ -12,11 +12,11 @@
 	transition: background-color 0.2s ease-in-out;
 }
 
-.overlay--after-open {
+.overlay_after_open {
 	background-color: rgba(50, 90, 92, 0.4);
 }
 
-.overlay--before-close {
+.overlay_before_close {
 	background-color: rgba(0, 0, 0, 0);
 }
 
@@ -24,15 +24,14 @@
 	position: absolute;
 	opacity: 0;
 	width: 70vw;
-
 	transition: opacity 0.2s ease-in-out;
 }
 
-.modal--after-open {
+.modal_after_open {
 	opacity: 1;
 }
 
-.modal--before-close {
+.modal_before_close {
 	opacity: 0;
 }
 
@@ -61,18 +60,30 @@
 	flex-direction: column;
 }
 
-.fieldGroup {
+.field_group {
 	display: flex;
 	justify-content: space-between;
 	gap: 10px;
 }
 
+<<<<<<< HEAD
 .fieldGroup .field {
+=======
+.field_group .field {
+>>>>>>> test
 	width: 7rem;
 }
 
 .input {
+<<<<<<< HEAD
 	height: 1.7rem;
+=======
+	border: 1px #999 solid;
+	border-radius: 5px;
+	padding: 0px 0.2rem;
+	height: 1.7rem;
+	outline: none;
+>>>>>>> test
 }
 
 .preview {
@@ -132,3 +143,16 @@
 p {
 	margin: 0.3rem 0;
 }
+<<<<<<< HEAD
+=======
+
+.description {
+	border: 1px solid #999;
+	padding: 0.2rem 0.2rem;
+	min-height: 60px;
+	width: 100%;
+	box-sizing: border-box;
+	border-radius: 5px;
+	outline: none;
+}
+>>>>>>> test

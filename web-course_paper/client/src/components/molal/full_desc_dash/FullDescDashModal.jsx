@@ -1,15 +1,39 @@
+import { Helmet } from 'react-helmet-async'
 import { CiShoppingBasket } from 'react-icons/ci'
 import { VscChromeClose } from 'react-icons/vsc'
 import Modal from 'react-modal'
-import { useDispatch } from 'react-redux'
-import { addToBasket } from '../../../redux/slices/basketSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart, fetchCart } from '../../../redux/slices/cartSlice'
+import { deleteDish } from '../../../redux/slices/dishSlice'
 import styles from './FullDescDashModal.module.css'
-
 export function FullDescDashModal({ isOpen, onClose, product }) {
 	const dispatch = useDispatch()
-	const handleAddToBasket = e => {
+	const { isAuthenticated, user } = useSelector(state => state.auth)
+
+	const handleAddToBasket = async (e, dishId) => {
 		e.stopPropagation()
-		dispatch(addToBasket(product))
+
+		if (isAuthenticated) {
+			try {
+				await dispatch(addToCart({ userId: user.id, dishId, quantity: 1 }))
+				onClose()
+				dispatch(fetchCart(user.id))
+			} catch (error) {
+				console.error('Ошибка при добавлении в корзину:', error)
+			}
+		} else {
+			onClose()
+		}
+	}
+
+	const handleDeleteDish = dishId => {
+		try {
+			dispatch(deleteDish(dishId))
+			onClose()
+			dispatch(fetchCart(user.id))
+		} catch (error) {
+			console.log('Ошибка при удалении: ', error)
+		}
 	}
 
 	return (
@@ -30,21 +54,37 @@ export function FullDescDashModal({ isOpen, onClose, product }) {
 			onRequestClose={onClose}
 			contentLabel='Description Dash'
 		>
-			<div className={styles.button} onClick={onClose}>
+			<Helmet>
+				<title>Zagrebin Restaurant | Описание блюда</title>
+			</Helmet>
+			<div className={styles.buttons} onClick={onClose}>
+				{isAuthenticated && user.role === 'admin' && (
+					<div
+						onClick={() => handleDeleteDish(product.id)}
+						className={styles.delete}
+					>
+						Удалить
+					</div>
+				)}
+				<div>.</div>
 				<VscChromeClose size={40} className={styles.close} />
 			</div>
 			<div className={styles.content}>
 				<div className={styles.image_container}>
 					<img
 						className={styles.image}
+<<<<<<< HEAD
 						src={`http://localhost:5000/dish/image/${product.imageId}`}
+=======
+						src={`http://localhost:5000${product.imageUrl}`}
+>>>>>>> test
 						alt='image dash'
 					/>
 				</div>
 				<div className={styles.description}>
 					<div className={styles.header}>
 						<h2 className={styles.title}>{product.title}</h2>
-						<p className={styles.ingredients}>{product.desc}</p>
+						<p className={styles.ingredients}>{product.description}</p>
 					</div>
 					<div className={styles.footer}>
 						<div className={styles.nutritional_value}>
@@ -64,10 +104,10 @@ export function FullDescDashModal({ isOpen, onClose, product }) {
 						<div className={styles.tableau}>
 							<div className={styles.prise_and_wight}>
 								<div className={styles.price}>{product.price} P</div>
-								<div className={styles.wight}>{product.size} г</div>
+								<div className={styles.wight}>{product.weight} г</div>
 							</div>
 							<div
-								onClick={e => handleAddToBasket(e)}
+								onClick={e => handleAddToBasket(e, product.id)}
 								className={styles.adding}
 							>
 								<CiShoppingBasket className={styles.basket} size={40} />

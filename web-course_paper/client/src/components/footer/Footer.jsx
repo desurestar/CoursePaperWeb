@@ -10,6 +10,7 @@ export function Footer({ className }) {
 				</div>
 				<div className={styles.background_content}>
 					<a href='#' className={styles.link}>
+<<<<<<< HEAD
 						Доставка и оплата
 					</a>
 					<a href='#' className={styles.link}>
@@ -19,6 +20,11 @@ export function Footer({ className }) {
 						О нас
 					</a>
 					<a href='#' className={styles.link}>
+=======
+						Программа лояльности
+					</a>
+					<a href='#' className={styles.link}>
+>>>>>>> test
 						Публичная оферта
 					</a>
 					<a href='#' className={styles.link}>

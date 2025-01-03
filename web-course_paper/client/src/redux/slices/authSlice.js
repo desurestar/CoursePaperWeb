@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-// Асинхронные действия для регистрации и входа
 export const verifyToken = createAsyncThunk(
 	'auth/verifyToken',
 	async (_, { rejectWithValue }) => {
@@ -12,7 +11,7 @@ export const verifyToken = createAsyncThunk(
 			const response = await axios.get('http://localhost:5000/api/verify', {
 				headers: { Authorization: `Bearer ${token}` },
 			})
-			return response.data.user // Возвращаем данные пользователя
+			return response.data.user
 		} catch (error) {
 			return rejectWithValue('Token verification failed')
 		}
@@ -31,7 +30,7 @@ export const login = createAsyncThunk('auth/login', async userData => {
 	const response = await axios.post('http://localhost:5000/api/login', userData)
 	localStorage.setItem('token', response.data.token)
 	localStorage.setItem('role', response.data.user.role)
-	return response.data // Возвращаем данные из ответа
+	return response.data
 })
 
 export const logout = createAsyncThunk('auth/logout', async () => {
@@ -52,7 +51,7 @@ const authSlice = createSlice({
 		builder
 			.addCase(verifyToken.fulfilled, (state, action) => {
 				state.isAuthenticated = true
-				state.user = action.payload // Сохраняем данные пользователя
+				state.user = action.payload
 				state.status = 'succeeded'
 			})
 			.addCase(verifyToken.rejected, state => {
@@ -67,7 +66,7 @@ const authSlice = createSlice({
 			.addCase(login.fulfilled, (state, action) => {
 				state.isAuthenticated = true
 				state.token = action.payload.token
-				state.user = action.payload.user // Сохранение данных пользователя
+				state.user = action.payload.user
 				state.status = 'succeeded'
 			})
 			.addCase(logout.fulfilled, state => {

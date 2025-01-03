@@ -75,3 +75,8 @@ model Order {
   customerEmail String
   orderItems    OrderItem[]
 }
+
+model Test {
+  id   Int    @id @default(autoincrement())
+  name String
+}
